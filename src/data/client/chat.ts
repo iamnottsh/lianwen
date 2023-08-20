@@ -1,7 +1,7 @@
+import {ecAlgo} from '@/data/client/role'
 import {encode} from 'base65536'
 import {Binary, ObjectId, serialize} from 'bson'
 import {向量长度} from '../common/Chat'
-import {ecAlgo} from './role'
 
 export const aesAlgo = {name: 'AES-GCM'}
 
@@ -9,7 +9,7 @@ export const ecAlgorithm = {...ecAlgo, hash: 'SHA-512'}
 
 export const createSigner = (privateKey: CryptoKey) => async (messageBytes: Uint8Array): Promise<string> => {
   const signedBytes = new Uint8Array(await crypto.subtle.sign(ecAlgorithm, privateKey, messageBytes))
-  return encode(signedBytes)
+  return Buffer.from(signedBytes).toString('base64')
 }
 
 export default async function chat(主控: ObjectId, 定义: boolean, 动静: string, unwrappedKey: CryptoKey, signer: (messageBytes: Uint8Array) => Promise<string>, callback: (消息: string, 签名: string) => Promise<void>): Promise<void> {

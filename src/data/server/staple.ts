@@ -1,3 +1,4 @@
+import {ecKey} from '@/data/client/role'
 import {decode} from 'base65536'
 import {Binary, deserialize, ObjectId} from 'bson'
 import {ecAlgorithm} from '../client/chat'
@@ -5,8 +6,8 @@ import Chat, {内容最长, 向量长度} from '../common/Chat'
 import {格式错误} from './tragic'
 
 export async function verify(公证: Binary, messageBytes: Uint8Array, 签名: string) {
-  const publicKey = await crypto.subtle.importKey('spki', 公证.buffer, ecAlgorithm, false, ['verify'])
-  if (!await crypto.subtle.verify(ecAlgorithm, publicKey, decode(签名), messageBytes)) throw new 格式错误('验签不成')
+  const publicKey = await crypto.subtle.importKey('spki', 公证.buffer, ecKey, false, ['verify'])
+  if (!await crypto.subtle.verify(ecAlgorithm, publicKey, Buffer.from(签名, 'base64'), messageBytes)) throw new 格式错误('验签不成')
 }
 
 export default async (消息: string, 签名: string, callback: (主控: ObjectId, 定义: boolean) => Promise<Binary>): Promise<Chat> => {
