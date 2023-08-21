@@ -1,7 +1,7 @@
 import {Binary, ObjectId} from 'bson'
 
 export const 向量长度 = 16
-export const 内容最长 = 500
+export const 表码最长 = 500
 
 export interface 交互体 {
   控者: ObjectId
