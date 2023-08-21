@@ -1,9 +1,9 @@
-import {格式错误, 领人设} from '@/接收/人设'
-import {主控体, 表据长度} from '@/数据/主控'
-import {人设体} from '@/数据/人设'
 import {Binary, ObjectId} from 'bson'
+import 主控体, {表据长度} from '../数据/主控体'
+import 人设体 from '../数据/人设体'
+import 领人设, {格式错误} from './领人设'
 
-export async function 领主控(意: string, 证: string): Promise<主控体> {
+export default async function 领主控(意: string, 证: string): Promise<主控体> {
   const gen = 领人设<主控体>(意, 证)
   const {人设, 持者, 表据} = (await gen.next()).value as Record<keyof 主控体, any>
   if (!(人设 instanceof Object)) throw new 格式错误(`主控中的人设必须用作记录`)

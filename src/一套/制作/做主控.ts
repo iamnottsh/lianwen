@@ -1,12 +1,12 @@
-import {出加解, 包加解, 造加解} from '@/安全/加解'
-import {主控体} from '@/数据/主控'
-import {人设体} from '@/数据/人设'
+import {出加解, 包加解, 造加解} from '@/一套/安全/加解'
 import {encode} from 'base65536'
 import {Binary, ObjectId} from 'bson'
-import {做人设, 给人设} from './人设'
+import 主控体 from '../数据/主控体'
+import 人设体 from '../数据/人设体'
+import 做人设, {给人设} from './做人设'
 
-export async function 做主控(情节: string, 真名: string, 萌差: string, 补充: string, 送出: (意: string, 证: string) => Promise<void>, 持者: ObjectId, 包: CryptoKey) {
-  const gen = 做人设<主控体>(情节, 真名, 萌差, 补充, 送出)
+export default async function 做主控(情节: string, 真名: string, 萌差: string, 补充: string, 提交: (意: string, 证: string) => Promise<void>, 持者: ObjectId, 包: CryptoKey) {
+  const gen = 做人设<主控体>(情节, 真名, 萌差, 补充, 提交)
   const 人设 = (await gen.next()).value as 人设体
   const 加解 = await 造加解()
   const 表节 = new Uint8Array(await 包加解(加解, 包)), 里节 = new Uint8Array(await 出加解(加解))
