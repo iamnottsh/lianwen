@@ -1,4 +1,4 @@
-import 容器 from '@/容器'
+import 容器 from './容器'
 import {Close} from '@mui/icons-material'
 import {AppBar, Dialog, DialogContent, IconButton, Slide, Toolbar, Typography} from '@mui/material'
 import {TransitionProps} from '@mui/material/transitions'

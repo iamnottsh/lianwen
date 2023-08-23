@@ -17,15 +17,18 @@
     "@types/node": "20.5.1",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
+    "@types/stack-trace": "^0.0.30",
     "base65536": "^4.0.3",
     "bson": "^4.7.2",
+    "error-stack-parser": "^2.1.4",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.19",
     "ky": "^0.33.3",
-    "mongodb": "^5.7.0",
+    "mongodb": "^4.17.0",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "stack-trace": "1.0.0-pre2",
     "typescript": "5.1.6"
   }
 }

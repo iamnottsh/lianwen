@@ -1,10 +1,12 @@
-import useOpenOrClose from '@/useOpenOrClose'
-import 全屏对话框 from '@/全屏对话框'
-import 报错 from '@/报错'
+import {_id2str} from '../ObjectIdUrlSafeBase64'
 import {Add} from '@mui/icons-material'
 import {Box, Button, CircularProgress, Fab, MenuItem, Stack, TextField} from '@mui/material'
+import {ObjectId} from 'bson'
 import {useRouter} from 'next/navigation'
 import {useState} from 'react'
+import useOpenOrClose from '../useOpenOrClose'
+import 全屏对话框 from '../全屏对话框'
+import 报错 from '../报错'
 import {情节最短, 情节最长, 真名最短, 真名最长, 萌差选项, 补充最长} from '../数据/人设体'
 
 export default function 编人设({
@@ -12,7 +14,7 @@ export default function 编人设({
   送出,
 }: {
   title: string
-  送出: (情节: string, 真名: string, 萌差: string, 补充: string) => Promise<string>
+  送出: (情节: string, 真名: string, 萌差: string, 补充: string) => Promise<ObjectId>
 }) {
   const [is, handleOpen, handleClose] = useOpenOrClose()
   const [情节, set情节] = useState<string>('')
@@ -34,7 +36,9 @@ export default function 编人设({
           onSubmit={event => {
             event.preventDefault()
             set错误(null)
-            送出(情节, 真名, 萌差, 补充).then(push).catch(set错误)
+            送出(情节, 真名, 萌差, 补充).then(_id => {
+              push(`/host/${_id2str(_id)}`)
+            }).catch(set错误)
           }}
         >
           <TextField

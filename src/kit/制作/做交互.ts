@@ -1,13 +1,13 @@
-import useAsyncState from '@/useAsyncState'
-import useSsrLocalStorage from '@/useSsrLocalStorage'
-import {执行POST请求} from '@/一套/网络/请求'
 import {decode, encode} from 'base65536'
 import {Binary, ObjectId, serialize} from 'bson'
 import {useEffect} from 'react'
+import useAsyncState from '../useAsyncState'
+import useSsrLocalStorage from '../useSsrLocalStorage'
 import {入加解, 拆加解, 搞加密, 搞解密} from '../安全/加解'
 import {导入拆} from '../安全/包拆'
 import {搞签证} from '../安全/验签'
 import 交互体, {向量长度} from '../数据/交互体'
+import {执行POST请求} from '../网络/请求'
 
 export default async function 做交互(控者: ObjectId, 定义: boolean, 加解: CryptoKey, 动静: string, 签: CryptoKey) {
   const iv = crypto.getRandomValues(new Uint8Array(向量长度))

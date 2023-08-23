@@ -1,5 +1,5 @@
-import getProcessEnvVar from '@/getProcessEnvVar'
 import {ClientSession, Db, MongoClient} from 'mongodb'
+import getProcessEnvVar from './getProcessEnvVar'
 
 const clientPromise = MongoClient.connect(getProcessEnvVar('MONGODB_URL'))
 const dbName = getProcessEnvVar('MONGODB_DATABASE')

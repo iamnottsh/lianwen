@@ -1,20 +1,19 @@
-import useAsyncState from '@/useAsyncState'
-import useSsrLocalStorage from '@/useSsrLocalStorage'
-import {执行POST请求} from '@/一套/网络/请求'
+import useAsyncState from '../useAsyncState'
+import useSsrLocalStorage from '../useSsrLocalStorage'
+import {执行POST请求} from '../网络/请求'
 import {decode, encode} from 'base65536'
-import {Binary, Document, serialize} from 'bson'
+import {Binary, Document, ObjectId, serialize} from 'bson'
 import {useEffect} from 'react'
 import {导入签, 导入验, 导出签, 导出验, 搞签证, 造验签} from '../安全/验签'
 import 人设体 from '../数据/人设体'
 
-export default async function* 做人设<T extends Document>(情节: string, 真名: string, 萌差: string, 补充: string, url: string): AsyncGenerator<人设体 | void, string, void | T> {
+export default async function* 做人设<T extends Document>(情节: string, 真名: string, 萌差: string, 补充: string, url: string): AsyncGenerator<人设体 | void, ObjectId, void | T> {
   const {publicKey: 验, privateKey: 签} = await 造验签()
   const 验节 = new Uint8Array(await 导出验(验)), 签节 = new Uint8Array(await 导出签(签))
-  yield {情节, 真名, 萌差, 补充, 验据: new Binary(验节)}
-  const 文 = serialize((yield) as T)
-  const res = await 执行POST请求<string>(url, encode(文), await 搞签证(签, 文))
+  const 文 = serialize((yield {情节, 真名, 萌差, 补充, 验据: new Binary(验节)}) as T)
+  const _id = await 执行POST请求<ObjectId>(url, encode(文), await 搞签证(签, 文))
   localStorage.setItem(`签节-${encode(验节)}`, encode(签节))
-  return res
+  return _id
 }
 
 export async function 给人设({情节, 真名, 萌差, 补充, 验据}: 人设体) {
