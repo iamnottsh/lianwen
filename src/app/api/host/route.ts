@@ -7,10 +7,10 @@ import {ObjectId} from 'bson'
 export const POST = 响应POST请求<ObjectId>(async (意, 证) => {
   const {人设, 包据} = await 领主持(意, 证)
   return withTransaction(async (db, session) => {
-    const collection = collectHost(db)
-    if (await collection.findOne({包据}, {session})) throw new 数据矛盾('发生包据碰撞')
+    const collectionHost = collectHost(db)
+    if (await collectionHost.findOne({包据}, {session, projection: {_id: 1}})) throw new 数据矛盾(`发生包据碰撞`)
     const _id = new ObjectId()
-    await collection.insertOne({_id, 人设, 包据})
+    await collectionHost.insertOne({_id, 人设, 包据})
     return _id
   })
 })

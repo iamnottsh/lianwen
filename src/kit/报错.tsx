@@ -9,11 +9,15 @@ export default function 报错({
   关闭: () => void
 }) {
   return (
-    <Alert severity="error" sx={{maxWidth: '100%'}} onClose={() => 关闭()}>
+    <Alert severity="error" sx={{maxWidth: '100%'}} onClose={关闭}>
       <AlertTitle>{错误.toString()}</AlertTitle>
       <List dense>
         {ErrorStackParser.parse(错误).map((value, index) => <ListItem key={index}>
-          <ListItemText primary={value.getFunctionName() ?? '<anonymous>'} secondary={`${value.getFileName()}:${value.getLineNumber()}:${value.getColumnNumber()}`}/>
+          <ListItemText
+            primary={value.getFunctionName() ?? '（匿名函数）'}
+            secondary={`@${value.getFileName()}:${value.getLineNumber()}:${value.getColumnNumber()}`}
+            secondaryTypographyProps={{component: 'span'}}
+          />
         </ListItem>)}
       </List>
     </Alert>

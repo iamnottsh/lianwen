@@ -6,7 +6,11 @@ import 容器 from '@/kit/容器'
 export default function Page() {
   return (
     <容器 component="main">
-      <编主持/>
+      <Main/>
     </容器>
   )
+}
+
+function Main() {
+  return <编主持/>
 }

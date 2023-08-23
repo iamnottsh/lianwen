@@ -25,6 +25,12 @@ export const 响应POST请求 = <T>(handler: (意: string, 证: string) => Promi
   const 证 = request.headers.get('Authorization')
   return 响应请求<T>(证 === null ? Promise.reject(new 验证失败('请求头中必须有Authorization字段')) : request.text().then(意 => handler(意, 证)))
 }
+export const 响应细分请求 = <T>(handler: (params: Partial<Record<string, string | string[]>>) => Promise<T>) => (_: NextRequest, context: any) => {
+  return 响应请求<T>(handler(context.params))
+}
+export const 响应GET请求 = <T>(handler: (searchParams: URLSearchParams) => Promise<T>) => (request: NextRequest) => {
+  return 响应请求<T>(handler(new URL(request.url).searchParams))
+}
 
 export class 数据矛盾 extends Error {
   constructor(message: string) {

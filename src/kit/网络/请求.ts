@@ -15,3 +15,5 @@ const 执行请求 = async <T>(promise: ResponsePromise) => {
 }
 const prefixUrl = '/api'
 export const 执行POST请求 = <T>(url: string, 意: string, 证: string) => 执行请求<T>(ky.post(url, {prefixUrl, body: 意, headers: {Authorization: 证}}))
+export const 执行细分请求 = <T>(segments: string[]) => 执行请求<T>(ky.get(segments.join('/'), {prefixUrl}))
+export const 执行GET请求 = <T>(url: string, searchParams: URLSearchParams) => 执行请求<T>(ky.get(url, {prefixUrl, searchParams}))
