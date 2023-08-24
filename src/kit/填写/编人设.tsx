@@ -2,7 +2,6 @@ import 角色体 from '@/kit/数据/角色体'
 import {Add} from '@mui/icons-material'
 import {Box, Button, CircularProgress, Fab, MenuItem, Stack, TextField} from '@mui/material'
 import {ObjectId} from 'bson'
-import {useRouter} from 'next/navigation'
 import {useState} from 'react'
 import {_id2str} from '../ObjectIdUrlSafeBase64'
 import useOpenOrClose from '../useOpenOrClose'
@@ -23,7 +22,6 @@ export default function 编人设({
   const [角色, set角色] = useState<角色体>({情节: '', 真名: '', 萌差: '', 补充: ''})
   const [错误, set错误] = useState<Error | null>()
   const 加载 = 错误 === null
-  const {push} = useRouter()
   return (
     <>
       <Fab color="secondary" sx={{position: 'fixed', bottom: 16, right: 16}} onClick={handleOpen}><Add/></Fab>
@@ -37,7 +35,7 @@ export default function 编人设({
             event.preventDefault()
             set错误(null)
             送出(角色).then(_id => {
-              push(`/${url}/${_id2str(_id)}`)
+              location.href = `/${url}/${_id2str(_id)}`
             }).catch(set错误)
           }}
         >

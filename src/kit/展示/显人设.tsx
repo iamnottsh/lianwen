@@ -1,7 +1,7 @@
 import 角色体 from '@/kit/数据/角色体'
 import {ArrowForwardIosSharp} from '@mui/icons-material'
-import {Accordion, AccordionDetails, AccordionSummaryProps, Box, Chip, Fab, Stack, Typography} from '@mui/material'
-import {useRouter} from 'next/navigation'
+import {Accordion, AccordionDetails, AccordionSummaryProps, Box, Chip, CircularProgress, Fab, Stack, Typography} from '@mui/material'
+import {useState} from 'react'
 
 export default function 显人设({
   角色,
@@ -16,7 +16,11 @@ export default function 显人设({
   url: string
   children?: React.ReactNode
 }) {
-  const {push} = useRouter()
+  const [loading, setLoading] = useState(false)
+  const handleClick = () => {
+    setLoading(true)
+    location.href = `/${url}`
+  }
   return (
     <Accordion expanded={expanded} onChange={(_, value) => setExpanded(value)}>
       <Summary
@@ -33,10 +37,10 @@ export default function 显人设({
           <Typography variant="h5" component="div" sx={{wordBreak: 'break-all'}}>{角色.真名}</Typography><Chip label={角色.萌差}/>
         </Box>
         <Typography component="pre" color="text.secondary" sx={{whiteSpace: 'pre-wrap', wordBreak: 'break-all'}}>{角色.补充}</Typography>
-        <Fab color="secondary" onClick={() => push(`/${url}`)}>
-          {children}
-          {/*TODO 转圈*/}
-        </Fab>
+        <Box position="relative">
+          {loading && <CircularProgress size={66} sx={{position: 'absolute', top: -5, left: -5}}/>}
+          <Fab color="secondary" onClick={handleClick} disabled={loading}>{children}</Fab>
+        </Box>
       </Stack>
     </Accordion>
   )
