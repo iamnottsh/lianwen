@@ -1,4 +1,5 @@
 import 显人设 from '@/kit/展示/显人设'
+import 角色体 from '@/kit/数据/角色体'
 import {Home} from '@mui/icons-material'
 import {AccordionSummary, alpha, styled} from '@mui/material'
 
@@ -7,23 +8,11 @@ const Summary = styled(AccordionSummary)(({theme}) => ({
 }))
 
 export default function 显主持({
-  情节,
-  真名,
-  萌差,
-  补充,
+  角色,
   展开,
-  set展开,
 }: {
-  情节: string
-  真名: string
-  萌差: string
-  补充: string
-  展开: boolean
-  set展开: React.Dispatch<boolean>
+  角色: 角色体
+  展开: [boolean, React.Dispatch<boolean>]
 }) {
-  return (
-    <显人设 情节={情节} 真名={真名} 萌差={萌差} 补充={补充} 展开={展开} set展开={set展开} Summary={Summary} url="/">
-      <Home/>
-    </显人设>
-  )
+  return <显人设 角色={角色} 展开={展开} Summary={Summary} url="/"><Home/></显人设>
 }

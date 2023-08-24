@@ -1,3 +1,4 @@
+import 角色体 from '@/kit/数据/角色体'
 import {_id2str} from '../ObjectIdUrlSafeBase64'
 import {Add} from '@mui/icons-material'
 import {Box, Button, CircularProgress, Fab, MenuItem, Stack, TextField} from '@mui/material'
@@ -7,20 +8,17 @@ import {useState} from 'react'
 import useOpenOrClose from '../useOpenOrClose'
 import 全屏对话框 from '../全屏对话框'
 import 报错 from '../报错'
-import {情节最短, 情节最长, 真名最短, 真名最长, 萌差选项, 补充最长} from '../数据/人设体'
+import {情节最短, 情节最长, 真名最短, 真名最长, 萌差选项, 补充最长} from '../数据/角色体'
 
 export default function 编人设({
   title,
   送出,
 }: {
   title: string
-  送出: (情节: string, 真名: string, 萌差: string, 补充: string) => Promise<ObjectId>
+  送出: (角色: 角色体) => Promise<ObjectId>
 }) {
   const [is, handleOpen, handleClose] = useOpenOrClose()
-  const [情节, set情节] = useState<string>('')
-  const [真名, set真名] = useState<string>('')
-  const [萌差, set萌差] = useState<string>('')
-  const [补充, set补充] = useState<string>('')
+  const [角色, set角色] = useState<角色体>({情节: '', 真名: '', 萌差: '', 补充: ''})
   const [错误, set错误] = useState<Error | null>()
   const 加载 = 错误 === null
   const {push} = useRouter()
@@ -36,7 +34,7 @@ export default function 编人设({
           onSubmit={event => {
             event.preventDefault()
             set错误(null)
-            送出(情节, 真名, 萌差, 补充).then(_id => {
+            送出(角色).then(_id => {
               push(`/host/${_id2str(_id)}`)
             }).catch(set错误)
           }}
@@ -45,8 +43,8 @@ export default function 编人设({
             id="情节"
             label="情节"
             required
-            value={情节}
-            onChange={event => set情节(event.target.value)}
+            value={角色.情节}
+            onChange={event => set角色({...角色, 情节: event.target.value})}
             inputProps={{minLength: 情节最短, maxLength: 情节最长}}
             fullWidth
             multiline
@@ -58,8 +56,8 @@ export default function 编人设({
               id="真名"
               label="真名"
               required
-              value={真名}
-              onChange={event => set真名(event.target.value)}
+              value={角色.真名}
+              onChange={event => set角色({...角色, 真名: event.target.value})}
               inputProps={{minLength: 真名最短, maxLength: 真名最长}}
               sx={{flexGrow: 1}}
             />
@@ -67,8 +65,8 @@ export default function 编人设({
               id="萌差"
               label="萌差"
               required
-              value={萌差}
-              onChange={event => set萌差(event.target.value)}
+              value={角色.萌差}
+              onChange={event => set角色({...角色, 萌差: event.target.value})}
               select
               sx={{width: '25%'}}
             >
@@ -78,8 +76,8 @@ export default function 编人设({
           <TextField
             id="补充"
             label="补充"
-            value={补充}
-            onChange={event => set补充(event.target.value)}
+            value={角色.补充}
+            onChange={event => set角色({...角色, 补充: event.target.value})}
             inputProps={{maxLength: 补充最长}}
             fullWidth
             multiline

@@ -1,7 +1,8 @@
 import {decode} from 'base65536'
 import {Binary, deserialize, Document} from 'bson'
 import {导入验, 搞验证} from '../安全/验签'
-import 人设体, {情节最短, 情节最长, 真名最短, 真名最长, 萌差选项, 补充最长, 验据长度} from '../数据/人设体'
+import 人设体, {验据长度} from '../数据/人设体'
+import {情节最短, 情节最长, 真名最短, 真名最长, 萌差选项, 补充最长} from '../数据/角色体'
 
 export class 格式错误 extends Error {
   constructor(message: string) {
@@ -13,7 +14,7 @@ export class 格式错误 extends Error {
 export default async function* 领人设<T extends Document>(意: string, 证: string): AsyncGenerator<Record<keyof T, any> | void, void, void | Record<keyof 人设体, any>> {
   const 文 = decode(意)
   yield deserialize(文) as Record<keyof T, any>
-  const {情节, 真名, 萌差, 补充, 验据} = (yield) as Record<keyof 人设体, any>
+  const {角色: {情节, 真名, 萌差, 补充}, 验据} = (yield) as Record<keyof 人设体, any>
   if (typeof 情节 !== 'string') throw new 格式错误(`人设中的情节必须是字符串`)
   if (情节.length < 情节最短) throw new 格式错误(`人设中的情节不得短于${情节最短}个字`)
   if (情节.length > 情节最长) throw new 格式错误(`人设中的情节不得长于${情节最长}个字`)

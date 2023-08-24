@@ -7,5 +7,5 @@ interface HostDoc extends 主持体 {
 }
 
 export default function collectHost(db: Db) {
-  return db.collection<HostDoc>('host')
+  return db.collection<HostDoc>('楼主')
 }

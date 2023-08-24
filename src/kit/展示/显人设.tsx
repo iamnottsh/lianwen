@@ -1,42 +1,40 @@
-import {ArrowBackIosNewSharp} from '@mui/icons-material'
-import {Accordion, AccordionDetails, AccordionSummaryProps, Box, Chip, Fab, Typography} from '@mui/material'
+import 角色体 from '@/kit/数据/角色体'
+import {ArrowForwardIosSharp} from '@mui/icons-material'
+import {Accordion, AccordionDetails, AccordionSummaryProps, Box, Chip, Fab, Stack, Typography} from '@mui/material'
 import {useRouter} from 'next/navigation'
 
 export default function 显人设({
-  情节,
-  真名,
-  萌差,
-  补充,
-  展开,
-  set展开,
+  角色,
+  展开: [expanded, setExpanded],
   Summary,
   url,
   children,
 }: {
-  情节: string
-  真名: string
-  萌差: string
-  补充: string
-  展开: boolean
-  set展开: React.Dispatch<boolean>
+  角色: 角色体
+  展开: [boolean, React.Dispatch<boolean>]
   Summary: React.ComponentType<AccordionSummaryProps>
   url: string
   children?: React.ReactNode
 }) {
   const {push} = useRouter()
   return (
-    <Accordion expanded={展开} onChange={(_, value) => set展开(value)}>
-      <Summary expandIcon={<ArrowBackIosNewSharp/>} sx={{'& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {transform: 'rotate(-90deg)'}}}>
-        <Typography variant="body1" component="pre" sx={{whiteSpace: 'pre-wrap', wordBreak: 'break-all'}}>{情节}</Typography>
+    <Accordion expanded={expanded} onChange={(_, value) => setExpanded(value)}>
+      <Summary
+        expandIcon={<ArrowForwardIosSharp sx={{fontSize: '0.9rem'}}/>}
+        sx={{
+          flexDirection: 'row-reverse',
+          '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {transform: 'rotate(90deg)'},
+        }}
+      >
+        <Typography variant="body1" component="pre" sx={{whiteSpace: 'pre-wrap', wordBreak: 'break-all', ml: 1}}>{角色.情节}</Typography>
       </Summary>
-      <AccordionDetails sx={{'&>:not(style)': {my: 1.5}}}>
+      <Stack component={AccordionDetails} p={2} spacing={1.5}>
         <Box display="flex" alignItems="center" justifyContent="space-between">
-          <Typography variant="h5" component="div" sx={{wordBreak: 'break-all'}}>{真名}</Typography>
-          <Chip label={萌差}/>
+          <Typography variant="h5" component="div" sx={{wordBreak: 'break-all'}}>{角色.真名}</Typography><Chip label={角色.萌差}/>
         </Box>
-        <Typography component="pre" color="text.secondary" sx={{whiteSpace: 'pre-wrap', wordBreak: 'break-all'}}>{补充}</Typography>
+        <Typography component="pre" color="text.secondary" sx={{whiteSpace: 'pre-wrap', wordBreak: 'break-all'}}>{角色.补充}</Typography>
         <Fab color="secondary" onClick={() => push(url)}>{children}</Fab>
-      </AccordionDetails>
+      </Stack>
     </Accordion>
   )
 }

@@ -16,10 +16,6 @@ export default async function 做交互(控者: ObjectId, 定义: boolean, 加�
   await 执行POST请求('chat', encode(文), await 搞签证(签, 文))
 }
 
-export async function 给交互({控者, 向量, 定义, 表码}: 交互体, 加解: CryptoKey) {
-  return {控者, 定义, 动静: await 搞解密(向量.buffer, 加解, 表码.buffer)}
-}
-
 export function 使用密(表钥: Uint8Array, 包节: Uint8Array, 表节: Uint8Array) {
   const [拆节] = useSsrLocalStorage(`拆节-${encode(包节)}`)
   const [里节] = useSsrLocalStorage(`里节-${encode(表节)}`)
