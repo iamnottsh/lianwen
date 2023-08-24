@@ -13,6 +13,5 @@ export async function* 领交互(意: string, 证: string): AsyncGenerator<交�
   if (向量.length() !== 向量长度) throw new 格式错误(`交互中的向量长度必须恰为${向量长度}`)
   if (!(表码 instanceof Binary)) throw new 格式错误(`交互中的内容必须是二进制`)
   if (表码.length() > 表码最长) throw new 格式错误(`交互中的内容不得长于${表码最长}个字`)
-  yield {控者, 定义, 向量, 表码}
-  await 搞验证((yield) as CryptoKey, 证, 表码.buffer)
+  await 搞验证((yield {控者, 定义, 向量, 表码}) as CryptoKey, 证, 文)
 }
