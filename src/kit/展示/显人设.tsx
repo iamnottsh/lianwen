@@ -33,7 +33,10 @@ export default function 显人设({
           <Typography variant="h5" component="div" sx={{wordBreak: 'break-all'}}>{角色.真名}</Typography><Chip label={角色.萌差}/>
         </Box>
         <Typography component="pre" color="text.secondary" sx={{whiteSpace: 'pre-wrap', wordBreak: 'break-all'}}>{角色.补充}</Typography>
-        <Fab color="secondary" onClick={() => push(url)}>{children}</Fab>
+        <Fab color="secondary" onClick={() => push(`/${url}`)}>
+          {children}
+          {/*TODO 转圈*/}
+        </Fab>
       </Stack>
     </Accordion>
   )

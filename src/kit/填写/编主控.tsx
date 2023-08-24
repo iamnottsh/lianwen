@@ -9,5 +9,5 @@ export default function 编主控({
   持者: ObjectId
   包: CryptoKey
 }) {
-  return <编人设 title="扮演主控" 送出={做主控(持者, 包)}/>
+  return <编人设 title="扮演主控" 送出={做主控(持者, 包)} url="sama"/>
 }

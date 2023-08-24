@@ -1,12 +1,11 @@
 import 角色体 from '@/kit/数据/角色体'
-import useAsyncState from '../useAsyncState'
-import useSsrLocalStorage from '../useSsrLocalStorage'
-import {执行POST请求} from '../网络/请求'
 import {decode, encode} from 'base65536'
 import {Binary, Document, ObjectId, serialize} from 'bson'
-import {useEffect} from 'react'
-import {导入签, 导入验, 导出签, 导出验, 搞签证, 造验签} from '../安全/验签'
+import useAsyncState from '../useAsyncState'
+import useSsrLocalStorage from '../useSsrLocalStorage'
+import {导入签, 导出签, 导出验, 搞签证, 造验签} from '../安全/验签'
 import 人设体 from '../数据/人设体'
+import {执行POST请求} from '../网络/请求'
 
 export default async function* 做人设<T extends Document>(角色: 角色体, url: string): AsyncGenerator<人设体 | void, ObjectId, void | T> {
   const {publicKey: 验, privateKey: 签} = await 造验签()
@@ -19,11 +18,7 @@ export default async function* 做人设<T extends Document>(角色: 角色体, 
 
 export function 使用签(验节: Uint8Array) {
   const [签节] = useSsrLocalStorage(`签节-${encode(验节)}`)
-  const {result, reason, fetching, fetch} = useAsyncState<CryptoKey>()
-  useEffect(() => {
-    fetch(async () => {
-      if (签节 !== null) return await 导入签(decode(签节))
-    })
-  }, [签节])
-  return {result, reason, fetching}
+  return useAsyncState(async () => {
+    if (签节 !== null) return await 导入签(decode(签节))
+  })
 }

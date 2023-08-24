@@ -1,10 +1,10 @@
 import 角色体 from '@/kit/数据/角色体'
-import {_id2str} from '../ObjectIdUrlSafeBase64'
 import {Add} from '@mui/icons-material'
 import {Box, Button, CircularProgress, Fab, MenuItem, Stack, TextField} from '@mui/material'
 import {ObjectId} from 'bson'
 import {useRouter} from 'next/navigation'
 import {useState} from 'react'
+import {_id2str} from '../ObjectIdUrlSafeBase64'
 import useOpenOrClose from '../useOpenOrClose'
 import 全屏对话框 from '../全屏对话框'
 import 报错 from '../报错'
@@ -13,9 +13,11 @@ import {情节最短, 情节最长, 真名最短, 真名最长, 萌差选项, �
 export default function 编人设({
   title,
   送出,
+  url,
 }: {
   title: string
   送出: (角色: 角色体) => Promise<ObjectId>
+  url: string
 }) {
   const [is, handleOpen, handleClose] = useOpenOrClose()
   const [角色, set角色] = useState<角色体>({情节: '', 真名: '', 萌差: '', 补充: ''})
@@ -35,7 +37,7 @@ export default function 编人设({
             event.preventDefault()
             set错误(null)
             送出(角色).then(_id => {
-              push(`/host/${_id2str(_id)}`)
+              push(`/${url}/${_id2str(_id)}`)
             }).catch(set错误)
           }}
         >

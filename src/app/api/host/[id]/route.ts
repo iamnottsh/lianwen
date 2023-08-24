@@ -9,8 +9,7 @@ export const GET = 响应细分请求<楼主头>(async ({id}) => {
   if (typeof id !== 'string') throw new 格式错误(`细分中的id必须是字符串`)
   const _id = str2_id(id)
   return withTransaction(async (db, session) => {
-    const collectionHost = collectHost(db)
-    const 楼主 = await collectionHost.findOne<楼主头>({_id}, {session, projection: {_id: false, 角色: '$人设.角色', 包据: true}})
+    const 楼主 = await collectHost(db).findOne<楼主头>({_id}, {session, projection: {_id: false, 角色: '$人设.角色', 包据: true}})
     if (!楼主) throw new 数据矛盾(`楼不存在`)
     return 楼主
   })

@@ -30,7 +30,7 @@ export default function 编交互({
     }).catch(set错误)
   }
   const bar = (
-    <>
+    <容器 component="nav">
       <OutlinedInput
         id="动静"
         value={动静}
@@ -40,7 +40,10 @@ export default function 编交互({
           {加载 && <CircularProgress size={40} sx={{position: 'absolute', top: -20, left: 0}}/>}
           <IconButton color="secondary" edge="end" onClick={handleClick} disabled={加载}><Send/></IconButton>
         </InputAdornment>}
-      ></OutlinedInput>
+        inputRef={ref}
+        fullWidth
+        autoFocus
+      />
       <Box display="flex" flexDirection="row">
         {['，', '。', '？', '！', '、', '…', '~', '❤️', '（', '）', '/*', '*/'].map(s => <Button
           key={s}
@@ -58,16 +61,14 @@ export default function 编交互({
             set动静(newValue)
           }}
         >{s}</Button>)}
-        {错误 && <报错 错误={错误} 关闭={关闭}/>}
       </Box>
-    </>
+      {错误 && <报错 错误={错误} 关闭={关闭}/>}
+    </容器>
   )
   return (
     <>
       <Box visibility="hidden">{bar}</Box>
-      <AppBar position="fixed" color="inherit" sx={{top: 'auto', bottom: 0, maxHeight: '100%', overflow: 'auto'}}>
-        <容器 component="nav">{bar}</容器>
-      </AppBar>
+      <AppBar position="fixed" color="inherit" sx={{top: 'auto', bottom: 0, maxHeight: '100%', overflow: 'auto'}}>{bar}</AppBar>
     </>
   )
 }

@@ -34,8 +34,8 @@ function Main({
   const choice = useSingleChoice(持者, (x, y) => x.equals(y))
   return (
     <容器 component="main">
-      <编主控 持者={持者} 包={包}/>
       <显主持 角色={角色} 展开={choice(持者)}/>
+      <编主控 持者={持者} 包={包}/>
     </容器>
   )
 }
