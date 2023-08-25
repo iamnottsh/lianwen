@@ -1,4 +1,4 @@
-import {Button, Divider} from '@mui/material'
+import {Button, Divider, Typography} from '@mui/material'
 
 export default function 列人设({
   is,
