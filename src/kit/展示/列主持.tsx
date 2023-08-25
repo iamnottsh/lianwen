@@ -1,9 +1,9 @@
-import {_id2str} from '@/kit/ObjectIdUrlSafeBase64'
-import {Choice} from '@/kit/useSingleChoice'
-import 列角色 from '@/kit/展示/列角色'
 import {ObjectId} from 'bson'
 import {useEffect, useState} from 'react'
+import {_id2str} from '../ObjectIdUrlSafeBase64'
 import useOpenOrClose from '../useOpenOrClose'
+import {Choice} from '../useSingleChoice'
+import 列角色 from '../展示/列角色'
 import 角色头 from '../数据/角色头'
 import {执行GET请求} from '../网络/请求'
 
@@ -23,7 +23,7 @@ export default function 列主持({
   const reload = () => load(执行GET请求<角色头[]>('host', new URLSearchParams()).then(setData).finally(close))
   useEffect(reload, [])
   const before = () => {
-    if (data.length) load(执行GET请求<角色头[]>('host', new URLSearchParams({before: _id2str(data[0]._id)})).then(value => setData(data.concat(value))))
+    if (data.length) load(执行GET请求<角色头[]>('host', new URLSearchParams({before: _id2str(data[data.length - 1]._id)})).then(value => setData(data.concat(value))))
     else reload()
   }
   const newest = () => {

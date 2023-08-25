@@ -22,8 +22,7 @@ export const GET = 响应GET请求(async searchParams => {
   if (id === null) throw new 数据矛盾(`搜索参数中必须有id字段`)
   const 持者 = str2_id(id)
   return withTransaction(async (db, session) => {
-    const cursor = collectSama(db).find<角色头>({持者}, {session, projection: {角色: `$人设.角色`}}).sort({_id: -1})
-    if (before !== null) cursor.filter({_id: {$lt: str2_id(before)}})
+    const cursor = collectSama(db).find<角色头>({持者, ...before !== null && {_id: {$lt: str2_id(before)}}}, {session, projection: {角色: `$人设.角色`}}).sort({_id: -1})
     return await cursor.limit(每页返回).toArray()
   })
 })

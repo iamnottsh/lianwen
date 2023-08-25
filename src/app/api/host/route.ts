@@ -19,7 +19,7 @@ export const POST = 响应POST请求(async (意, 证) => {
 export const GET = 响应GET请求(async searchParams => {
   const before = searchParams.get('before')
   return withTransaction(async (db, session) => {
-    const cursor = collectHost(db).find<角色头>({}, {session, projection: {角色: `$人设.角色`}}).sort({_id: -1})
+    const cursor = collectHost(db).find<角色头>({...before !== null && {_id: {$lt: str2_id(before)}}}, {session, projection: {角色: `$人设.角色`}}).sort({_id: -1})
     if (before !== null) cursor.filter({_id: {$lt: str2_id(before)}})
     return await cursor.limit(每页返回).toArray()
   })
