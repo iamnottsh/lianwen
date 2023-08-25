@@ -8,6 +8,7 @@ import {ObjectId} from 'bson'
 export default function 列角色({
   data,
   is,
+  end,
   before,
   newest,
   choice,
@@ -16,6 +17,7 @@ export default function 列角色({
 }: {
   data: 角色头[]
   is: boolean
+  end: boolean
   before: React.DispatchWithoutAction
   newest: React.DispatchWithoutAction
   choice: Choice<ObjectId>
@@ -23,7 +25,7 @@ export default function 列角色({
   children?: React.ReactNode
 }) {
   return (
-    <列人设 is={is} before={before} newest={newest}>
+    <列人设 is={is} end={end} before={before} newest={newest}>
       {children}
       {data.slice().reverse().map(({角色, _id}) => {
         const id = _id2str(_id)
