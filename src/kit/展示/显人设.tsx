@@ -1,7 +1,6 @@
 import 角色体 from '@/kit/数据/角色体'
 import {ArrowForwardIosSharp} from '@mui/icons-material'
-import {Accordion, AccordionDetails, AccordionSummaryProps, Box, Chip, CircularProgress, Fab, Stack, Typography} from '@mui/material'
-import {useState} from 'react'
+import {Accordion, AccordionDetails, AccordionSummaryProps, Box, Chip, Fab, Stack, Typography} from '@mui/material'
 
 export default function 显人设({
   角色,
