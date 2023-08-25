@@ -19,6 +19,6 @@ export const POST = 响应POST请求<void>(async (意, 证) => {
     const 主持 = await collectHost(db).findOne<主持体>({_id: 主控.持者}, {session, projection: {_id: false}})
     if (!主持) throw new 数据矛盾(`要回复的层所处的楼不存在`)
     await gen.next(await 导入验((定义 ? 主持 : 主控).人设.验据.buffer))
-    await collectChat(db).insertOne({_id: new ObjectId(), 控者, 定义, 向量, 表码})
+    await collectChat(db).insertOne({_id: new ObjectId(), 控者, 定义, 向量, 表码}, {session})
   })
 })
