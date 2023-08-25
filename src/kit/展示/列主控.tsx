@@ -1,5 +1,5 @@
 import {ObjectId} from 'bson'
-import {useEffect, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import {_id2str} from '../ObjectIdUrlSafeBase64'
 import useOpenOrClose from '../useOpenOrClose'
 import {Choice} from '../useSingleChoice'
@@ -19,17 +19,17 @@ export default function 列主控({
   const [data, setData] = useState<角色头[]>([])
   const [is, open, close] = useOpenOrClose(true)
   const [end, setEnd] = useState(false)
-  const load = (promise: Promise<void>) => {
+  const load = useCallback((promise: Promise<void>) => {
     open()
     promise.finally(close)
-  }
+  }, [open, close])
   const reload = () => {
     load(执行GET请求<角色头[]>('sama', new URLSearchParams({id})).then(value => {
       setData(value)
       setEnd(value.length < 每页返回)
     }).finally(close))
   }
-  useEffect(reload, [])
+  useEffect(reload, [close, id, load])
   const before = () => {
     if (data.length) load(执行GET请求<角色头[]>('sama', new URLSearchParams({id, before: _id2str(data[data.length - 1]._id)})).then(value => {
       setData(data.concat(value))
