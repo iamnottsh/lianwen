@@ -10,7 +10,7 @@ import 交互体 from '@/kit/数据/交互体'
 import {响应POST请求, 数据矛盾} from '@/kit/网络/响应'
 import {ObjectId} from 'bson'
 
-export const POST = 响应POST请求<void>(async (意, 证) => {
+export const POST = 响应POST请求(async (意, 证) => {
   const gen = 领交互(意, 证)
   const {控者, 定义, 向量, 表码} = (await gen.next()).value as 交互体
   return withTransaction(async (db, session) => {

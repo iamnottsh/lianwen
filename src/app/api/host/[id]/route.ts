@@ -5,7 +5,7 @@ import {格式错误} from '@/kit/接收/领人设'
 import 楼主头 from '@/kit/数据/楼主头'
 import {响应细分请求, 数据矛盾} from '@/kit/网络/响应'
 
-export const GET = 响应细分请求<楼主头>(async ({id}) => {
+export const GET = 响应细分请求(async ({id}) => {
   if (typeof id !== 'string') throw new 格式错误(`细分中的id必须是字符串`)
   const _id = str2_id(id)
   return withTransaction(async (db, session) => {
