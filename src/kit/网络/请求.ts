@@ -3,7 +3,7 @@ import {deserialize} from 'bson'
 import ky, {ResponsePromise} from 'ky'
 import 正异 from './正异'
 
-const 执行请求 = async <T>(promise: ResponsePromise) => {
+const 执行请求 = async <T>(promise: ResponsePromise): Promise<T> => {
   const {结果, 原因} = deserialize(decode(await promise.text())) as 正异<T>
   if (原因) {
     const error = new Error(原因.message)

@@ -18,14 +18,14 @@ export default function 编人设({
   送出: (角色: 角色体) => Promise<ObjectId>
   url: string
 }) {
-  const [is, handleOpen, handleClose] = useOpenOrClose()
+  const [is, open, close] = useOpenOrClose()
   const [角色, set角色] = useState<角色体>({情节: '', 真名: '', 萌差: '', 补充: ''})
   const [错误, set错误] = useState<Error | null>()
   const 加载 = 错误 === null
   return (
     <>
-      <Fab color="secondary" sx={{position: 'fixed', bottom: 16, right: 16}} onClick={handleOpen}><Add/></Fab>
-      <全屏对话框 open={is} handleClose={handleClose} title={title}>
+      <Fab color="secondary" sx={{position: 'fixed', bottom: 16, right: 16}} onClick={open}><Add/></Fab>
+      <全屏对话框 open={is} handleClose={close} title={title}>
         <Stack
           spacing={2}
           component="form"

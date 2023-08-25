@@ -21,26 +21,26 @@ export default function Page({params: {id}}: {params: {id: string}}) {
   const {data, error, mutate} = useSWR(['sama', id], key => 执行细分请求<层主头>(key).then(给层主))
   if (error) return <报错 错误={error} 关闭={mutate}/>
   if (!data) return <LinearProgress/>
-  const 控者 = str2_id(id), {楼主: {信息: 楼主, 包节}, 层主: {信息: 层主, 持者, 表节}} = data
-  return <Main 控者={控者} 楼主={楼主} 包节={包节} 层主={层主} 持者={持者} 表节={表节}/>
+  const {楼主: {信息: 楼主, 包节}, 层主: {信息: 层主, 持者, 表节}} = data
+  return <Main id={id} 楼主={楼主} 包节={包节} 层主={层主} 持者={持者} 表节={表节}/>
 }
 
 function Main({
-  控者,
+  id,
   楼主,
   包节,
   层主,
   持者,
   表节,
 }: {
-  控者: ObjectId
+  id: string
   楼主: 人设头
   包节: Uint8Array
   层主: 人设头
   持者: ObjectId
   表节: Uint8Array
 }) {
-  const choice = useSingleChoice(控者, (x, y) => x.equals(y))
+  const 控者 = str2_id(id), choice = useSingleChoice(控者, (x, y) => x.equals(y))
   const 密 = 使用密(包节, 表节)
   return (
     <容器 component="main">
