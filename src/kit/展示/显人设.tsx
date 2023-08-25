@@ -16,11 +16,6 @@ export default function 显人设({
   url: string
   children?: React.ReactNode
 }) {
-  const [loading, setLoading] = useState(false)
-  const handleClick = () => {
-    setLoading(true)
-    location.href = `/${url}`
-  }
   return (
     <Accordion expanded={expanded} onChange={(_, value) => setExpanded(value)}>
       <Summary
@@ -37,10 +32,7 @@ export default function 显人设({
           <Typography variant="h5" component="div" sx={{wordBreak: 'break-all'}}>{角色.真名}</Typography><Chip label={角色.萌差}/>
         </Box>
         <Typography component="pre" color="text.secondary" sx={{whiteSpace: 'pre-wrap', wordBreak: 'break-all'}}>{角色.补充}</Typography>
-        <Box position="relative">
-          {loading && <CircularProgress size={66} sx={{position: 'absolute', top: -5, left: -5}}/>}
-          <Fab color="secondary" onClick={handleClick} disabled={loading}>{children}</Fab>
-        </Box>
+        <Fab color="secondary" onClick={() => open(`/${url}`, '_blank')}>{children}</Fab>
       </Stack>
     </Accordion>
   )
