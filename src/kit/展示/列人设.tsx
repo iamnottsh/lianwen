@@ -1,4 +1,4 @@
-import {Button, Divider, Typography} from '@mui/material'
+import {Button, Divider} from '@mui/material'
 
 export default function 列人设({
   is,
@@ -16,11 +16,11 @@ export default function 列人设({
   return (
     <>
       <Divider role="presentation" sx={{my: 1}}>
-        {end ? <Button disabled>没有更旧</Button> : <Button onClick={before} disabled={is}>加载更旧</Button>}
+        {end ? <Button size="large" disabled>没有更旧</Button> : <Button size="large" onClick={before} disabled={is}>加载更旧</Button>}
       </Divider>
       {children}
       <Divider role="presentation" sx={{my: 1}}>
-        <Button onClick={newest} disabled={is}>加载最新</Button>
+        <Button size="large" onClick={newest} disabled={is}>加载最新</Button>
       </Divider>
     </>
   )
