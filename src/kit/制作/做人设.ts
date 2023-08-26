@@ -1,6 +1,7 @@
 import 角色体 from '@/kit/数据/角色体'
 import {decode, encode} from 'base65536'
 import {Binary, Document, ObjectId, serialize} from 'bson'
+import {useCallback} from 'react'
 import useAsyncState from '../useAsyncState'
 import useSsrLocalStorage from '../useSsrLocalStorage'
 import {导入签, 导出签, 导出验, 搞签证, 造验签} from '../安全/验签'
@@ -18,7 +19,7 @@ export default async function* 做人设<T extends Document>(角色: 角色体, 
 
 export function 使用签(验节: Uint8Array) {
   const [签节] = useSsrLocalStorage(`签节-${encode(验节)}`)
-  return useAsyncState(async () => {
+  return useAsyncState(useCallback(async () => {
     if (签节 !== null) return await 导入签(decode(签节))
-  })
+  }, [签节]))
 }
