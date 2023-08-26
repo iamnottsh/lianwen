@@ -29,7 +29,6 @@ export default function 编人设({
         <Stack
           spacing={2}
           component="form"
-          sx={{'& .MuiTextField-root': {m: 1}}}
           autoComplete="off"
           onSubmit={event => {
             event.preventDefault()
@@ -51,7 +50,7 @@ export default function 编人设({
             minRows={6}
             autoFocus
           />
-          <Stack direction="row">
+          <Box display="flex">
             <TextField
               id="真名"
               label="真名"
@@ -59,7 +58,7 @@ export default function 编人设({
               value={角色.真名}
               onChange={event => set角色({...角色, 真名: event.target.value})}
               inputProps={{minLength: 真名最短, maxLength: 真名最长}}
-              sx={{flexGrow: 1}}
+              sx={{flexGrow: 1, mr: '10px'}}
             />
             <TextField
               id="萌差"
@@ -68,11 +67,11 @@ export default function 编人设({
               value={角色.萌差}
               onChange={event => set角色({...角色, 萌差: event.target.value})}
               select
-              sx={{width: '25%'}}
+              sx={{width: 'calc(25% - 5px)'}}
             >
               {萌差选项.map(value => <MenuItem key={value} value={value}>{value}</MenuItem>)}
             </TextField>
-          </Stack>
+          </Box>
           <TextField
             id="补充"
             label="补充"

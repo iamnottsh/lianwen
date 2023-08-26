@@ -28,6 +28,10 @@ export default function RootLayout({
         background: {default: lighten(grey.A400, 0.875)},
       },
     },
+    typography: {
+      fontSize: 15.75
+    },
+    spacing: 9
   }, zhCN), [prefersDarkMode])
   return (
     <html lang="zh-cmn-Hans">
