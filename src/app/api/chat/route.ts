@@ -26,11 +26,14 @@ export const POST = 响应POST请求(async (意, 证) => {
 })
 export const GET = 响应GET请求(async searchParams => {
   const before = searchParams.get('before')
+  const id = searchParams.get('id')
+  if (id === null) throw new 数据矛盾(`搜索参数中必须有主控id`)
+  const 控者 = str2_id(id)
   return withTransaction(async (db, session) => {
-    const cursor = collectChat(db).find<交互头>({...before !== null && {_id: {$lt: str2_id(before)}}}, {
-      session,
-      projection: {记录: true},
-    }).sort({_id: -1})
+    const cursor = collectChat(db).find<交互头>({
+      控者,
+      ...before !== null && {_id: {$lt: str2_id(before)}}
+    }, {session, projection: {记录: true},}).sort({_id: -1})
     if (before !== null) cursor.filter({_id: {$lt: str2_id(before)}})
     return await cursor.limit(单次返回).toArray()
   })

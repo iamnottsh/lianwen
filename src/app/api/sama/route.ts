@@ -19,10 +19,13 @@ export const POST = 响应POST请求(async (意, 证) => {
 export const GET = 响应GET请求(async searchParams => {
   const before = searchParams.get('before')
   const id = searchParams.get('id')
-  if (id === null) throw new 数据矛盾(`搜索参数中必须有id字段`)
+  if (id === null) throw new 数据矛盾(`搜索参数中必须有主持id`)
   const 持者 = str2_id(id)
   return withTransaction(async (db, session) => {
-    const cursor = collectSama(db).find<角色头>({持者, ...before !== null && {_id: {$lt: str2_id(before)}}}, {session, projection: {角色: `$人设.角色`}}).sort({_id: -1})
+    const cursor = collectSama(db).find<角色头>({
+      持者,
+      ...before !== null && {_id: {$lt: str2_id(before)}}
+    }, {session, projection: {角色: `$人设.角色`}}).sort({_id: -1})
     return await cursor.limit(每页返回).toArray()
   })
 })
