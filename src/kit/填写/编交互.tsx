@@ -46,6 +46,7 @@ export default function 编交互({
         inputRef={inputRef}
         fullWidth
         autoFocus
+        autoComplete="off"
       />
       <Box display="flex" flexDirection="row">
         {['，', '。', '？', '！', '、', '…', '~', '❤️', '（', '）', '/*', '*/'].map(s => <Button
