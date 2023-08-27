@@ -21,13 +21,15 @@ export default function 编交互({
   const [错误, set错误] = useState<Error | null>()
   const 加载 = 错误 === null
   const 关闭 = () => set错误(undefined)
-  const ref = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
   const handleClick = () => {
     set错误(null)
     做交互(控者, 定义, 加解, 动静, 签).then(() => {
       关闭()
       set动静('')
       dispatchEvent(new Event('送出交互'))
+      ref.current?.scrollIntoView({behavior: 'smooth'})
     }).catch(set错误)
   }
   const bar = (
@@ -41,7 +43,7 @@ export default function 编交互({
           {加载 && <CircularProgress size={40} sx={{position: 'absolute', top: -20, left: 0}}/>}
           <IconButton color="secondary" edge="end" onClick={handleClick} disabled={加载}><Send/></IconButton>
         </InputAdornment>}
-        inputRef={ref}
+        inputRef={inputRef}
         fullWidth
         autoFocus
       />
@@ -50,7 +52,7 @@ export default function 编交互({
           key={s}
           sx={{minWidth: 0, width: '100%'}}
           onClick={() => {
-            const {current} = ref
+            const {current} = inputRef
             if (!current) return
             const {value, selectionStart, selectionEnd} = current
             const start = selectionStart ?? 0, end = selectionEnd ?? 0
@@ -68,7 +70,7 @@ export default function 编交互({
   )
   return (
     <>
-      <Box visibility="hidden">{bar}</Box>
+      <Box visibility="hidden" ref={ref}>{bar}</Box>
       <AppBar position="fixed" color="inherit" sx={{top: 'auto', bottom: 0, maxHeight: '100%', overflow: 'auto'}}>{bar}</AppBar>
     </>
   )
