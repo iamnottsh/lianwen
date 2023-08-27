@@ -10,7 +10,7 @@ export default function 对方聊({
 }) {
   return (
     <ListItem sx={{justifyContent: 'left'}}>
-      <Pa sx={{borderRadius: '0 20px 20px 20px', mr: '5%'}}>
+      <Pa sx={{borderRadius: '5px 20px 20px 20px', mr: '5%'}}>
         <角色聊 动静={动静}/>
       </Pa>
     </ListItem>

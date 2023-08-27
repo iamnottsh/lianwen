@@ -8,7 +8,7 @@ export default function 自己聊({
 }) {
   return (
     <ListItem sx={{justifyContent: 'right'}}>
-      <Paper sx={{borderRadius: '20px 0 20px 20px', ml: '5%'}}>
+      <Paper sx={{borderRadius: '20px 5px 20px 20px', ml: '5%'}}>
         <角色聊 动静={动静}/>
       </Paper>
     </ListItem>
