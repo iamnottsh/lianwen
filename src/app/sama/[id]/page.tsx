@@ -7,6 +7,7 @@ import {使用签} from '@/kit/制作/做人设'
 import 给层主 from '@/kit/制作/给层主'
 import 编交互 from '@/kit/填写/编交互'
 import 容器 from '@/kit/容器'
+import 列交互 from '@/kit/展示/列交互'
 import 显主持 from '@/kit/展示/显主持'
 import 显主控 from '@/kit/展示/显主控'
 import 报错 from '@/kit/报错'
@@ -46,7 +47,12 @@ function Main({
     <容器 component="main">
       <显主持 角色={楼主.角色} 展开={choice(持者)}/>
       <显主控 角色={层主.角色} 展开={choice(控者)} 持者={持者}/>
-      {密 && <Head 控者={控者} {...密} 验节={密.定义 ? 楼主.验节 : 层主.验节}/>}
+      {密 &&
+        <>
+          <列交互 id={id} {...密}/>
+          <Head 控者={控者} {...密} 验节={密.定义 ? 楼主.验节 : 层主.验节}/>
+        </>
+      }
     </容器>
   )
 }

@@ -1,3 +1,4 @@
+import {向量长度} from '@/kit/数据/记录体'
 import {decode, encode} from 'base65536'
 import {Binary, ObjectId, serialize} from 'bson'
 import {useCallback} from 'react'
@@ -6,13 +7,13 @@ import useSsrLocalStorage from '../useSsrLocalStorage'
 import {入加解, 拆加解, 搞加密} from '../安全/加解'
 import {导入拆} from '../安全/包拆'
 import {搞签证} from '../安全/验签'
-import 交互体, {向量长度} from '../数据/交互体'
+import 交互体 from '../数据/交互体'
 import {执行POST请求} from '../网络/请求'
 
 export default async function 做交互(控者: ObjectId, 定义: boolean, 加解: CryptoKey, 动静: string, 签: CryptoKey) {
   const iv = crypto.getRandomValues(new Uint8Array(向量长度))
   const 表组 = new Uint8Array(await 搞加密(iv, 加解, new TextEncoder().encode(动静)))
-  const 文 = serialize({控者, 定义, 向量: new Binary(iv), 表码: new Binary(表组)} as 交互体)
+  const 文 = serialize({控者, 记录: {定义, 向量: new Binary(iv), 表码: new Binary(表组)}} as 交互体)
   await 执行POST请求('chat', encode(文), await 搞签证(签, 文))
 }
 

@@ -4,9 +4,9 @@ import 对方聊 from './对方聊'
 const Pa = styled(Paper)(({theme}) => ({backgroundColor: alpha(theme.palette.primary.main, 0.2)}))
 
 export default function 主持聊({
-  primary,
+  动静,
 }: {
-  primary?: React.ReactNode
+  动静?: React.ReactNode
 }) {
-  return <对方聊 Pa={Pa} primary={primary}/>
+  return <对方聊 Pa={Pa} 动静={动静}/>
 }

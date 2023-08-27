@@ -9,7 +9,7 @@ import 层主头 from '@/kit/数据/层主头'
 import {响应细分请求, 数据矛盾} from '@/kit/网络/响应'
 
 export const GET = 响应细分请求(async ({id}) => {
-  if (typeof id !== 'string') throw new 格式错误(`细分中的id必须是字符串`)
+  if (typeof id !== 'string') throw new 格式错误(`楼主细分中的id必须是字符串`)
   const _id = str2_id(id)
   return withTransaction(async (db, session) => {
     const 主控 = await collectSama(db).findOne<主控体>({_id}, {session, projection: {_id: false}})

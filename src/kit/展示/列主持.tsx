@@ -37,7 +37,7 @@ export default function 列主持({
   }
   const newest = () => {
     if (data.length) load(执行GET请求<角色头[]>('host', new URLSearchParams()).then(value => {
-      for (let i = 0; i < value.length; i++) if (value[i]._id.equals(data[0]._id)) return setData(value.slice(0, i).concat(data.slice(i)))
+      for (let i = 0; i < value.length; i++) if (value[i]._id.equals(data[0]._id)) return setData(value.slice(0, i).concat(data))
       setData(value)
       setEnd(value.length < 每页返回)
     }))
