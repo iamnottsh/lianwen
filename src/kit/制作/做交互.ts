@@ -23,5 +23,5 @@ export function 使用密(包节: Uint8Array, 表节: Uint8Array) {
   return useAsyncState(useCallback(async () => {
     if (拆节 !== null) return {定义: true, 加解: await 拆加解(表节, await 导入拆(decode(拆节)))}
     if (里节 !== null) return {定义: false, 加解: await 入加解(decode(里节))}
-  }, [拆节, 里节]))
+  }, [表节, 拆节, 里节]))
 }

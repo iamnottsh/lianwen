@@ -4,7 +4,7 @@ export default function useOpenOrClose(initialIs = false): [boolean, React.Dispa
   const [is, setIs] = useState(initialIs)
   return [
     is,
-    useCallback(() => setIs(true), [setIs]),
-    useCallback(() => setIs(false), [setIs]),
+    useCallback(() => setIs(true), []),
+    useCallback(() => setIs(false), []),
   ]
 }

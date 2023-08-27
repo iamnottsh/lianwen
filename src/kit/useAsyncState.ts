@@ -4,6 +4,6 @@ export default function useAsyncState<T>(fetcher: () => Promise<T | undefined>):
   const [data, setData] = useState<T>()
   useEffect(() => {
     fetcher().then(setData)
-  }, [fetcher, setData])
+  }, [fetcher])
   return data
 }

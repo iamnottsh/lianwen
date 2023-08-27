@@ -27,6 +27,7 @@ export default function 编交互({
     做交互(控者, 定义, 加解, 动静, 签).then(() => {
       关闭()
       set动静('')
+      dispatchEvent(new Event('送出交互'))
     }).catch(set错误)
   }
   const bar = (

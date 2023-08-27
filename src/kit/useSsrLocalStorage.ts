@@ -4,10 +4,10 @@ export default function useSsrLocalStorage(key: string, ssr: string | null = nul
   const [value, setValue] = useState<string | null>(ssr)
   useEffect(() => {
     setValue(typeof window === 'undefined' ? null : window.localStorage.getItem(key))
-  }, [key, setValue])
+  }, [key])
   const handleStorage = useCallback((event: WindowEventMap['storage']) => {
     if (event.key === key) setValue(event.newValue)
-  }, [key, setValue])
+  }, [key])
   useEffect(() => {
     window.addEventListener('storage', handleStorage)
     return () => window.removeEventListener('storage', handleStorage)
@@ -17,10 +17,10 @@ export default function useSsrLocalStorage(key: string, ssr: string | null = nul
     useCallback(newValue => {
       setValue(newValue)
       window.localStorage.setItem(key, newValue)
-    }, [key, setValue]),
+    }, [key]),
     useCallback(() => {
       setValue(null)
       window.localStorage.removeItem(key)
-    }, [key, setValue]),
+    }, [key]),
   ]
 }

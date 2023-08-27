@@ -28,28 +28,32 @@ export default function 列交互({
     open()
     promise.finally(close)
   }, [open, close])
-  const reload = () => {
+  const reload = useCallback(() => {
     load(执行GET请求<交互头[]>('chat', new URLSearchParams({id})).then(value => {
       setData(value)
       setEnd(value.length < 单次返回)
     }).finally(close))
-  }
-  useEffect(reload, [close, id, load])
-  const before = () => {
+  }, [id, load, close])
+  useEffect(() => reload(), [reload])
+  const before = useCallback(() => {
     if (data.length) load(执行GET请求<交互头[]>('chat', new URLSearchParams({id, before: _id2str(data[data.length - 1]._id)})).then(value => {
       setData(data.concat(value))
       setEnd(value.length < 单次返回)
     }))
     else reload()
-  }
-  const newest = () => {
+  }, [data, id, load, reload])
+  const newest = useCallback(() => {
     if (data.length) load(执行GET请求<交互头[]>('chat', new URLSearchParams({id})).then(value => {
       for (let i = 0; i < value.length; i++) if (value[i]._id.equals(data[0]._id)) return setData(value.slice(0, i).concat(data))
       setData(value)
       setEnd(value.length < 单次返回)
     }))
     else reload()
-  }
+  }, [data, id, load, reload])
+  useEffect(() => {
+    addEventListener('送出交互', newest)
+    return () => removeEventListener('送出交互', newest)
+  }, [newest])
   return (
     <列人设 is={is} end={end} before={before} newest={newest}>
       <List>{data.slice().reverse().map(({记录, _id}) => <Item key={_id2str(_id)} 定义={定义} 加解={加解} 记录={记录}/>)}</List>

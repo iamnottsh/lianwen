@@ -21,27 +21,27 @@ export default function 列主持({
     open()
     promise.finally(close)
   }, [open, close])
-  const reload = () => {
+  const reload = useCallback(() => {
     load(执行GET请求<角色头[]>('host', new URLSearchParams()).then(value => {
       setData(value)
       setEnd(value.length < 每页返回)
     }).finally(close))
-  }
-  useEffect(reload, [close, load])
-  const before = () => {
+  }, [load, close])
+  useEffect(() => reload(), [reload])
+  const before = useCallback(() => {
     if (data.length) load(执行GET请求<角色头[]>('host', new URLSearchParams({before: _id2str(data[data.length - 1]._id)})).then(value => {
       setData(data.concat(value))
       setEnd(value.length < 每页返回)
     }))
     else reload()
-  }
-  const newest = () => {
+  }, [data, load, reload])
+  const newest = useCallback(() => {
     if (data.length) load(执行GET请求<角色头[]>('host', new URLSearchParams()).then(value => {
       for (let i = 0; i < value.length; i++) if (value[i]._id.equals(data[0]._id)) return setData(value.slice(0, i).concat(data))
       setData(value)
       setEnd(value.length < 每页返回)
     }))
     else reload()
-  }
+  }, [data, load, reload])
   return <列角色 data={data} is={is} end={end} before={before} newest={newest} choice={choice} url="host">{children}</列角色>
 }
