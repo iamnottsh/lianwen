@@ -1,9 +1,9 @@
+import {ObjectId} from 'bson'
 import {_id2str} from '../ObjectIdUrlSafeBase64'
 import {Choice} from '../useSingleChoice'
+import 角色头 from '../数据/角色头'
 import 列人设 from './列人设'
 import 显角色 from './显角色'
-import 角色头 from '../数据/角色头'
-import {ObjectId} from 'bson'
 
 export default function 列角色({
   data,

@@ -32,8 +32,8 @@ export const GET = 响应GET请求(async searchParams => {
   return withTransaction(async (db, session) => {
     const cursor = collectChat(db).find<交互头>({
       控者,
-      ...before !== null && {_id: {$lt: str2_id(before)}}
-    }, {session, projection: {记录: true},}).sort({_id: -1})
+      ...before !== null && {_id: {$lt: str2_id(before)}},
+    }, {session, projection: {记录: true}}).sort({_id: -1})
     if (before !== null) cursor.filter({_id: {$lt: str2_id(before)}})
     return await cursor.limit(单次返回).toArray()
   })

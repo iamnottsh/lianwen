@@ -5,7 +5,7 @@ import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 import {createTheme, CssBaseline, darken, lighten, ThemeProvider, useMediaQuery} from '@mui/material'
-import {grey, lightBlue, pink, purple} from '@mui/material/colors'
+import {grey, pink, purple} from '@mui/material/colors'
 import {zhCN} from '@mui/material/locale'
 import {useMemo} from 'react'
 
@@ -29,9 +29,9 @@ export default function RootLayout({
       },
     },
     typography: {
-      fontSize: 15.75
+      fontSize: 15.75,
     },
-    spacing: 9
+    spacing: 9,
   }, zhCN), [prefersDarkMode])
   return (
     <html lang="zh-cmn-Hans">
