@@ -1,4 +1,4 @@
-import title from '@/title'
+import {title} from '@/config'
 import Main from './Main'
 
 export const metadata = {title}
