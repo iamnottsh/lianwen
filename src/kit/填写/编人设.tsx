@@ -8,6 +8,16 @@ import 全屏对话框 from '../全屏对话框'
 import 报错 from '../报错'
 import 角色体, {情节最短, 情节最长, 真名最短, 真名最长, 萌差选项, 补充最长} from '../数据/角色体'
 
+function Tip({
+  error,
+  children,
+}: {
+  error?: boolean
+  children?: React.ReactNode
+}) {
+  return <Box {...error && {color: 'error.main'}}>{children}</Box>
+}
+
 export default function 编人设({
   title,
   送出,
@@ -18,7 +28,10 @@ export default function 编人设({
   url: string
 }) {
   const [is, open, close] = useOpenOrClose()
-  const [角色, set角色] = useState<角色体>({情节: '', 真名: '', 萌差: '', 补充: ''})
+  const [情节, set情节] = useState(''), 情节error = 情节.length < 情节最短
+  const [真名, set真名] = useState(''), 真名error = 真名.length < 真名最短
+  const [萌差, set萌差] = useState(''), 萌差error = !萌差选项.includes(萌差)
+  const [补充, set补充] = useState('')
   const [错误, set错误] = useState<Error | null>()
   const 加载 = 错误 === null
   return (
@@ -32,7 +45,7 @@ export default function 编人设({
           onSubmit={event => {
             event.preventDefault()
             set错误(null)
-            送出(角色).then(_id => {
+            送出({情节, 真名, 萌差, 补充}).then(_id => {
               location.href = `/${url}/${_id2str(_id)}`
             }).catch(set错误)
           }}
@@ -41,9 +54,10 @@ export default function 编人设({
             id="情节"
             label="情节"
             required
-            value={角色.情节}
-            onChange={event => set角色({...角色, 情节: event.target.value})}
+            value={情节}
+            onChange={event => set情节(event.target.value)}
             inputProps={{minLength: 情节最短, maxLength: 情节最长}}
+            helperText={<Tip error={情节error}>{情节.length}/{情节最短}</Tip>}
             fullWidth
             multiline
             minRows={5}
@@ -54,18 +68,20 @@ export default function 编人设({
               id="真名"
               label="真名"
               required
-              value={角色.真名}
-              onChange={event => set角色({...角色, 真名: event.target.value})}
+              value={真名}
+              onChange={event => set真名(event.target.value)}
               inputProps={{minLength: 真名最短, maxLength: 真名最长}}
+              helperText={<Tip error={真名error}>{真名.length}/{真名最短}</Tip>}
               sx={{flexGrow: 1, mr: 1}}
             />
             <TextField
               id="萌差"
               label="萌差"
               required
-              value={角色.萌差}
-              onChange={event => set角色({...角色, 萌差: event.target.value})}
+              value={萌差}
+              onChange={event => set萌差(event.target.value)}
               select
+              helperText={<Tip error={萌差error}>选一个</Tip>}
               sx={{width: '37.5%'}}
             >
               {萌差选项.map(value => <MenuItem key={value} value={value}>{value}</MenuItem>)}
@@ -74,9 +90,10 @@ export default function 编人设({
           <TextField
             id="补充"
             label="补充"
-            value={角色.补充}
-            onChange={event => set角色({...角色, 补充: event.target.value})}
+            value={补充}
+            onChange={event => set补充(event.target.value)}
             inputProps={{maxLength: 补充最长}}
+            helperText={<Tip>{补充.length}</Tip>}
             fullWidth
             multiline
             minRows={4}
@@ -90,7 +107,7 @@ export default function 编人设({
               component={Button}
               InputProps={{size: 'small'}}
               inputProps={{type: 'submit'}}
-              disabled={错误 === null}
+              disabled={情节error || 真名error || 萌差error || 错误 === null}
             />
           </Box>
           {错误 && <报错 错误={错误} 关闭={() => set错误(undefined)}/>}
