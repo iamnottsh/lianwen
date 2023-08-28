@@ -66,7 +66,7 @@ export default function 编人设({
               value={角色.萌差}
               onChange={event => set角色({...角色, 萌差: event.target.value})}
               select
-              sx={{width: '40%'}}
+              sx={{width: '37.5%'}}
             >
               {萌差选项.map(value => <MenuItem key={value} value={value}>{value}</MenuItem>)}
             </TextField>
