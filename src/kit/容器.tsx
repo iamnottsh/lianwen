@@ -7,5 +7,5 @@ export default function 容器({
   component: React.ElementType
   children?: React.ReactNode
 }) {
-  return <Container component={component} sx={{p: 3}}>{children}</Container>
+  return <Container component={component} sx={{p: 2}}>{children}</Container>
 }

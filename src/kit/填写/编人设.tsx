@@ -39,7 +39,7 @@ export default function 编人设({
       <Fab color="secondary" sx={{position: 'fixed', bottom: 16, right: 16}} onClick={open}><Add/></Fab>
       <全屏对话框 open={is} handleClose={close} title={title}>
         <Stack
-          spacing={1.5}
+          spacing={1}
           component="form"
           autoComplete="off"
           onSubmit={event => {

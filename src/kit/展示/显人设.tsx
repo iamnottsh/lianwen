@@ -32,7 +32,7 @@ export default function 显人设({
       >
         <Typography variant="body1" component="pre" sx={{whiteSpace: 'pre-wrap', wordBreak: 'break-all', ml: 1}}>{角色.情节}</Typography>
       </Summary>
-      <Stack component={AccordionDetails} p={2} spacing={1.5}>
+      <Stack component={AccordionDetails} p={2} spacing={1}>
         <Box display="flex" alignItems="center" justifyContent="space-between">
           <Typography variant="h5" component="div" sx={{wordBreak: 'break-all'}}>{角色.真名}</Typography><Chip label={角色.萌差}/>
         </Box>
