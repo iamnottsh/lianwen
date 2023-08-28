@@ -15,7 +15,7 @@ function Tip({
   error?: boolean
   children?: React.ReactNode
 }) {
-  return <Box {...error && {color: 'error.main'}}>{children}</Box>
+  return <Box fontSize="smaller" {...error && {color: 'error.main'}}>{children}</Box>
 }
 
 export default function 编人设({
@@ -52,7 +52,7 @@ export default function 编人设({
         >
           <TextField
             id="情节"
-            label="情节"
+            placeholder="情节"
             required
             value={情节}
             onChange={event => set情节(event.target.value)}
@@ -66,7 +66,7 @@ export default function 编人设({
           <Box display="flex">
             <TextField
               id="真名"
-              label="真名"
+              placeholder="真名"
               required
               value={真名}
               onChange={event => set真名(event.target.value)}
@@ -76,7 +76,7 @@ export default function 编人设({
             />
             <TextField
               id="萌差"
-              label="萌差"
+              placeholder="萌差"
               required
               value={萌差}
               onChange={event => set萌差(event.target.value)}
@@ -89,7 +89,7 @@ export default function 编人设({
           </Box>
           <TextField
             id="补充"
-            label="补充"
+            placeholder="补充"
             value={补充}
             onChange={event => set补充(event.target.value)}
             inputProps={{maxLength: 补充最长}}
