@@ -14,7 +14,7 @@ export default function Main() {
 
 export function Content() {
   useEffect(() => {
-    document.title = `首页 - ${title}`
+    document.title = `首页_${title}`
   }, [])
   return (
     <容器 component="main">
