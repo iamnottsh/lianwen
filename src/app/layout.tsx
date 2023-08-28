@@ -1,9 +1,5 @@
 import Wrapper from '@/app/Wrapper'
 
-export const metadata = {
-  title: '联文岛',
-}
-
 export default function RootLayout({
   children,
 }: {
