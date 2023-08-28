@@ -35,7 +35,7 @@ function Main({
 }) {
   useEffect(() => {
     document.title = `${角色.真名}@${metadata.title}`
-  }, [])
+  }, [角色])
   const 持者 = str2_id(id), choice = useSingleChoice(持者, (x, y) => x.equals(y))
   return (
     <容器 component="main">

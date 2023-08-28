@@ -45,7 +45,7 @@ function Main({
 }) {
   useEffect(() => {
     document.title = `${层主.角色.真名}#${metadata.title}`
-  }, [])
+  }, [层主])
   const 控者 = str2_id(id), choice = useSingleChoice(控者, (x, y) => x.equals(y))
   const 密 = 使用密(包节, 表节)
   return (
