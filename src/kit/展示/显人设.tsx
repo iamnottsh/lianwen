@@ -1,14 +1,18 @@
-import 角色体 from '@/kit/数据/角色体'
+import 角色体 from '../数据/角色体'
 import {ArrowForwardIosSharp} from '@mui/icons-material'
 import {Accordion, AccordionDetails, AccordionSummaryProps, Box, Chip, Fab, Stack, Typography} from '@mui/material'
+import {ObjectId} from 'bson'
+import 查信息 from './查信息'
 
 export default function 显人设({
+  _id,
   角色,
   展开: [expanded, setExpanded],
   Summary,
   url,
   children,
 }: {
+  _id: ObjectId
   角色: 角色体
   展开: [boolean, React.Dispatch<boolean>]
   Summary: React.ComponentType<AccordionSummaryProps>
@@ -32,6 +36,7 @@ export default function 显人设({
         </Box>
         <Typography component="pre" color="text.secondary" sx={{whiteSpace: 'pre-wrap', wordBreak: 'break-all'}}>{角色.补充}</Typography>
         <Fab color="secondary" onClick={() => open(`/${url}`, '_blank')}>{children}</Fab>
+        <查信息 _id={_id}/>
       </Stack>
     </Accordion>
   )

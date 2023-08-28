@@ -1,4 +1,4 @@
-import 角色体 from '@/kit/数据/角色体'
+import 角色体 from '../数据/角色体'
 import {decode, encode} from 'base65536'
 import {Binary, Document, ObjectId, serialize} from 'bson'
 import {useCallback} from 'react'

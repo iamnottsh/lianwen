@@ -1,4 +1,5 @@
 import {CircularProgress, List} from '@mui/material'
+import {ObjectId} from 'bson'
 import {useCallback, useEffect, useState} from 'react'
 import {_id2str} from '../ObjectIdUrlSafeBase64'
 import useAsyncState from '../useAsyncState'
@@ -56,16 +57,18 @@ export default function 列交互({
   }, [newest])
   return (
     <列人设 is={is} end={end} before={before} newest={newest}>
-      <List>{data.slice().reverse().map(({记录, _id}) => <Item key={_id2str(_id)} 定义={定义} 加解={加解} 记录={记录}/>)}</List>
+      <List>{data.slice().reverse().map(({记录, _id}) => <Item key={_id2str(_id)} _id={_id} 定义={定义} 加解={加解} 记录={记录}/>)}</List>
     </列人设>
   )
 }
 
 function Item({
+  _id,
   定义,
   加解,
   记录,
 }: {
+  _id: ObjectId
   定义: boolean
   加解: CryptoKey
   记录: 记录体
@@ -74,5 +77,5 @@ function Item({
     const 里文 = await 搞解密(记录.向量.buffer, 加解, 记录.表码.buffer)
     return new TextDecoder().decode(里文)
   }, [记录, 加解])) ?? <CircularProgress/>
-  return 定义 === 记录.定义 ? <自己聊 动静={动静}/> : 定义 ? <主控聊 动静={动静}/> : <主持聊 动静={动静}/>
+  return 定义 === 记录.定义 ? <自己聊 _id={_id} 动静={动静}/> : 定义 ? <主控聊 _id={_id} 动静={动静}/> : <主持聊 _id={_id} 动静={动静}/>
 }

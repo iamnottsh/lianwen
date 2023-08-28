@@ -1,4 +1,4 @@
-import 角色体 from '@/kit/数据/角色体'
+import 角色体 from '../数据/角色体'
 import {encode} from 'base65536'
 import {Binary, ObjectId} from 'bson'
 import {导出包, 导出拆, 造包拆} from '../安全/包拆'

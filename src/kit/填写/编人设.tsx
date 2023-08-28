@@ -1,4 +1,4 @@
-import 角色体 from '@/kit/数据/角色体'
+import 角色体 from '../数据/角色体'
 import {Add} from '@mui/icons-material'
 import {Box, Button, CircularProgress, Fab, MenuItem, Stack, TextField} from '@mui/material'
 import {ObjectId} from 'bson'

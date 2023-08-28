@@ -1,4 +1,4 @@
-import {向量长度} from '@/kit/数据/记录体'
+import {向量长度} from '../数据/记录体'
 import {decode, encode} from 'base65536'
 import {Binary, ObjectId, serialize} from 'bson'
 import {useCallback} from 'react'

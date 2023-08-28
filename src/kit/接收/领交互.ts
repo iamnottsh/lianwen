@@ -1,4 +1,4 @@
-import {向量长度, 表码最长} from '@/kit/数据/记录体'
+import {向量长度, 表码最长} from '../数据/记录体'
 import {decode} from 'base65536'
 import {Binary, deserialize, ObjectId} from 'bson'
 import {搞验证} from '../安全/验签'
