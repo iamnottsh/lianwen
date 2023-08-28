@@ -31,7 +31,7 @@ export default function 全屏对话框({
     >
       <AppBar color="secondary">
         <Toolbar>
-          <Typography sx={{flexGrow: 1}} variant="h6" component="div">{title}</Typography>
+          <Typography variant="h6" component="div" flexGrow={1}>{title}</Typography>
           <IconButton size="large" color="inherit" edge="end" onClick={handleClose}><Close/></IconButton>
         </Toolbar>
       </AppBar>

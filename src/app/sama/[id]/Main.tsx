@@ -1,5 +1,6 @@
 'use client'
 
+import Header from '@/Header'
 import {str2_id} from '@/kit/ObjectIdUrlSafeBase64'
 import useSingleChoice from '@/kit/useSingleChoice'
 import {使用密} from '@/kit/制作/做交互'
@@ -14,10 +15,8 @@ import 报错 from '@/kit/报错'
 import 人设头 from '@/kit/数据/人设头'
 import 层主头 from '@/kit/数据/层主头'
 import {执行细分请求} from '@/kit/网络/请求'
-import {title} from '@/config'
 import {LinearProgress} from '@mui/material'
 import {ObjectId} from 'bson'
-import {useEffect} from 'react'
 import useSWR from 'swr'
 
 export default function Main({params: {id}}: {params: {id: string}}) {
@@ -43,13 +42,11 @@ function Content({
   持者: ObjectId
   表节: Uint8Array
 }) {
-  useEffect(() => {
-    document.title = `${层主.角色.真名}#${title}`
-  }, [层主])
   const 控者 = str2_id(id), choice = useSingleChoice(控者, (x, y) => x.equals(y))
   const 密 = 使用密(包节, 表节)
   return (
     <容器 component="main">
+      <Header prefix={层主.角色.真名} separator="#"/>
       <显主持 _id={持者} choice={choice} 角色={楼主.角色}/>
       <显主控 _id={控者} choice={choice} 角色={层主.角色} 持者={持者}/>
       {密 &&
