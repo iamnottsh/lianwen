@@ -36,7 +36,7 @@ export default function 编人设({
   const 加载 = 错误 === null
   return (
     <>
-      <Fab color="secondary" sx={{position: 'fixed', bottom: 16, right: 16}} onClick={open}><Add/></Fab>
+      <Fab color="secondary" sx={{position: 'fixed', bottom: 10, right: 10}} onClick={open}><Add/></Fab>
       <全屏对话框 open={is} handleClose={close} title={title}>
         <Stack
           spacing={0.5}
