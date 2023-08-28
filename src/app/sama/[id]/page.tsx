@@ -1,5 +1,6 @@
 'use client'
 
+import {metadata} from '@/app/layout'
 import {str2_id} from '@/kit/ObjectIdUrlSafeBase64'
 import useSingleChoice from '@/kit/useSingleChoice'
 import {使用密} from '@/kit/制作/做交互'
@@ -16,6 +17,7 @@ import 层主头 from '@/kit/数据/层主头'
 import {执行细分请求} from '@/kit/网络/请求'
 import {LinearProgress} from '@mui/material'
 import {ObjectId} from 'bson'
+import {useEffect} from 'react'
 import useSWR from 'swr'
 
 export default function Page({params: {id}}: {params: {id: string}}) {
@@ -41,6 +43,9 @@ function Main({
   持者: ObjectId
   表节: Uint8Array
 }) {
+  useEffect(() => {
+    document.title = `${层主.角色.真名}@${metadata.title}`
+  }, [])
   const 控者 = str2_id(id), choice = useSingleChoice(控者, (x, y) => x.equals(y))
   const 密 = 使用密(包节, 表节)
   return (
