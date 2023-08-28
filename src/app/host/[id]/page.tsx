@@ -35,7 +35,7 @@ function Main({
   return (
     <容器 component="main">
       <列主控 choice={choice} id={id}>
-        <显主持 _id={持者} 角色={角色} 展开={choice(持者)}/>
+        <显主持 _id={持者} choice={choice} 角色={角色}/>
       </列主控>
       <编主控 持者={持者} 包={包}/>
     </容器>

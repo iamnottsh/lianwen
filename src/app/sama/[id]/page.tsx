@@ -45,8 +45,8 @@ function Main({
   const 密 = 使用密(包节, 表节)
   return (
     <容器 component="main">
-      <显主持 _id={持者} 角色={楼主.角色} 展开={choice(持者)}/>
-      <显主控 _id={控者} 角色={层主.角色} 展开={choice(控者)} 持者={持者}/>
+      <显主持 _id={持者} choice={choice} 角色={楼主.角色}/>
+      <显主控 _id={控者} choice={choice} 角色={层主.角色} 持者={持者}/>
       {密 &&
         <>
           <列交互 id={id} {...密}/>

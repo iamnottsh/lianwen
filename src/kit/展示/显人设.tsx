@@ -1,3 +1,4 @@
+import {Choice} from '@/kit/useSingleChoice'
 import 角色体 from '../数据/角色体'
 import {ArrowForwardIosSharp} from '@mui/icons-material'
 import {Accordion, AccordionDetails, AccordionSummaryProps, Box, Chip, Fab, Stack, Typography} from '@mui/material'
@@ -6,19 +7,20 @@ import 查信息 from './查信息'
 
 export default function 显人设({
   _id,
+  choice,
   角色,
-  展开: [expanded, setExpanded],
   Summary,
   url,
   children,
 }: {
   _id: ObjectId
+  choice: Choice<ObjectId>
   角色: 角色体
-  展开: [boolean, React.Dispatch<boolean>]
   Summary: React.ComponentType<AccordionSummaryProps>
   url: string
   children?: React.ReactNode
 }) {
+  const [expanded, setExpanded] = choice(_id)
   return (
     <Accordion expanded={expanded} onChange={(_, value) => setExpanded(value)}>
       <Summary

@@ -29,7 +29,7 @@ export default function 列角色({
       {children}
       {data.slice().reverse().map(({角色, _id}) => {
         const id = _id2str(_id)
-        return <显角色 key={id} _id={_id} 角色={角色} 展开={choice(_id)} url={`${url}/${id}`}/>
+        return <显角色 key={id} _id={_id} choice={choice} 角色={角色} url={`${url}/${id}`}/>
       })}
     </列人设>
   )
