@@ -1,5 +1,6 @@
 'use client'
 
+import {metadata} from '@/app/layout'
 import {str2_id} from '@/kit/ObjectIdUrlSafeBase64'
 import useSingleChoice from '@/kit/useSingleChoice'
 import 给楼主 from '@/kit/制作/给楼主'
@@ -12,6 +13,7 @@ import 楼主头 from '@/kit/数据/楼主头'
 import 角色体 from '@/kit/数据/角色体'
 import {执行细分请求} from '@/kit/网络/请求'
 import {LinearProgress} from '@mui/material'
+import {useEffect} from 'react'
 import useSWR from 'swr'
 
 export default function Page({params: {id}}: {params: {id: string}}) {
@@ -31,6 +33,9 @@ function Main({
   角色: 角色体
   包: CryptoKey
 }) {
+  useEffect(() => {
+    document.title = `${角色.真名}@${metadata.title}`
+  }, [])
   const 持者 = str2_id(id), choice = useSingleChoice(持者, (x, y) => x.equals(y))
   return (
     <容器 component="main">
