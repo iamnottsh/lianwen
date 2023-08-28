@@ -26,7 +26,7 @@ export default function 编人设({
       <Fab color="secondary" sx={{position: 'fixed', bottom: 16, right: 16}} onClick={open}><Add/></Fab>
       <全屏对话框 open={is} handleClose={close} title={title}>
         <Stack
-          spacing={2}
+          spacing={1.5}
           component="form"
           autoComplete="off"
           onSubmit={event => {
@@ -46,7 +46,7 @@ export default function 编人设({
             inputProps={{minLength: 情节最短, maxLength: 情节最长}}
             fullWidth
             multiline
-            minRows={6}
+            minRows={5}
             autoFocus
           />
           <Box display="flex">
@@ -57,7 +57,7 @@ export default function 编人设({
               value={角色.真名}
               onChange={event => set角色({...角色, 真名: event.target.value})}
               inputProps={{minLength: 真名最短, maxLength: 真名最长}}
-              sx={{flexGrow: 1, mr: '10px'}}
+              sx={{flexGrow: 1, mr: 1}}
             />
             <TextField
               id="萌差"
@@ -66,7 +66,7 @@ export default function 编人设({
               value={角色.萌差}
               onChange={event => set角色({...角色, 萌差: event.target.value})}
               select
-              sx={{width: 'calc(25% - 5px)'}}
+              sx={{width: '40%'}}
             >
               {萌差选项.map(value => <MenuItem key={value} value={value}>{value}</MenuItem>)}
             </TextField>
@@ -88,6 +88,7 @@ export default function 编人设({
               value="送出"
               color="primary"
               component={Button}
+              InputProps={{size: 'small'}}
               inputProps={{type: 'submit'}}
               disabled={错误 === null}
             />
