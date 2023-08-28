@@ -1,9 +1,9 @@
-import 角色体 from '../数据/角色体'
 import {encode} from 'base65536'
 import {Binary, ObjectId} from 'bson'
 import {导出包, 导出拆, 造包拆} from '../安全/包拆'
 import 主持体 from '../数据/主持体'
 import 人设体 from '../数据/人设体'
+import 角色体 from '../数据/角色体'
 import 做人设 from './做人设'
 
 export default async function 做主持(角色: 角色体) {

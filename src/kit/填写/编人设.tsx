@@ -1,4 +1,3 @@
-import 角色体 from '../数据/角色体'
 import {Add} from '@mui/icons-material'
 import {Box, Button, CircularProgress, Fab, MenuItem, Stack, TextField} from '@mui/material'
 import {ObjectId} from 'bson'
@@ -7,7 +6,7 @@ import {_id2str} from '../ObjectIdUrlSafeBase64'
 import useOpenOrClose from '../useOpenOrClose'
 import 全屏对话框 from '../全屏对话框'
 import 报错 from '../报错'
-import {情节最短, 情节最长, 真名最短, 真名最长, 萌差选项, 补充最长} from '../数据/角色体'
+import 角色体, {情节最短, 情节最长, 真名最短, 真名最长, 萌差选项, 补充最长} from '../数据/角色体'
 
 export default function 编人设({
   title,

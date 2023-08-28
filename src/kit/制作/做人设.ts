@@ -1,4 +1,3 @@
-import 角色体 from '../数据/角色体'
 import {decode, encode} from 'base65536'
 import {Binary, Document, ObjectId, serialize} from 'bson'
 import {useCallback} from 'react'
@@ -6,6 +5,7 @@ import useAsyncState from '../useAsyncState'
 import useSsrLocalStorage from '../useSsrLocalStorage'
 import {导入签, 导出签, 导出验, 搞签证, 造验签} from '../安全/验签'
 import 人设体 from '../数据/人设体'
+import 角色体 from '../数据/角色体'
 import {执行POST请求} from '../网络/请求'
 
 export default async function* 做人设<T extends Document>(角色: 角色体, url: string): AsyncGenerator<人设体 | void, ObjectId, void | T> {

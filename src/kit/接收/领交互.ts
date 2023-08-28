@@ -1,8 +1,8 @@
-import {向量长度, 表码最长} from '../数据/记录体'
 import {decode} from 'base65536'
 import {Binary, deserialize, ObjectId} from 'bson'
 import {搞验证} from '../安全/验签'
 import 交互体 from '../数据/交互体'
+import {向量长度, 表码最长} from '../数据/记录体'
 import {格式错误} from './领人设'
 
 export async function* 领交互(意: string, 证: string): AsyncGenerator<交互体 | void, void, void | CryptoKey> {

@@ -1,8 +1,8 @@
 import {Choice} from '@/kit/useSingleChoice'
-import 角色体 from '../数据/角色体'
 import {ArrowForwardIosSharp} from '@mui/icons-material'
 import {Accordion, AccordionDetails, AccordionSummaryProps, Box, Chip, Fab, Stack, Typography} from '@mui/material'
 import {ObjectId} from 'bson'
+import 角色体 from '../数据/角色体'
 import 查信息 from './查信息'
 
 export default function 显人设({

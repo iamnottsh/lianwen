@@ -1,5 +1,5 @@
-import 角色体 from './角色体'
 import {Binary} from 'bson'
+import 角色体 from './角色体'
 
 export const 验据长度 = 158
 

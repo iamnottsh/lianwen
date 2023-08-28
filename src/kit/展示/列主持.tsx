@@ -3,9 +3,9 @@ import {useCallback, useEffect, useState} from 'react'
 import {_id2str} from '../ObjectIdUrlSafeBase64'
 import useOpenOrClose from '../useOpenOrClose'
 import {Choice} from '../useSingleChoice'
-import 列角色 from './列角色'
 import 角色头, {每页返回} from '../数据/角色头'
 import {执行GET请求} from '../网络/请求'
+import 列角色 from './列角色'
 
 export default function 列主持({
   choice,
