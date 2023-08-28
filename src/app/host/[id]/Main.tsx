@@ -1,5 +1,6 @@
 'use client'
 
+import Header from '@/Header'
 import {str2_id} from '@/kit/ObjectIdUrlSafeBase64'
 import useSingleChoice from '@/kit/useSingleChoice'
 import 给楼主 from '@/kit/制作/给楼主'
@@ -33,12 +34,10 @@ function Content({
   角色: 角色体
   包: CryptoKey
 }) {
-  useEffect(() => {
-    document.title = `${角色.真名}@${title}`
-  }, [角色])
   const 持者 = str2_id(id), choice = useSingleChoice(持者, (x, y) => x.equals(y))
   return (
     <容器 component="main">
+      <Header prefix={角色.真名} separator="@"/>
       <列主控 choice={choice} id={id}>
         <显主持 _id={持者} choice={choice} 角色={角色}/>
       </列主控>
