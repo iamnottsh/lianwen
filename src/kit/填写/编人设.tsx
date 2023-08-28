@@ -15,7 +15,7 @@ function Tip({
   error?: boolean
   children?: React.ReactNode
 }) {
-  return <Box mt={-0.4} fontSize="smaller" {...error && {color: 'error.main'}}>{children}</Box>
+  return <Box mt={-0.5} fontSize="smaller" {...error && {color: 'error.main'}}>{children}</Box>
 }
 
 export default function 编人设({
@@ -93,12 +93,11 @@ export default function 编人设({
             value={补充}
             onChange={event => set补充(event.target.value)}
             inputProps={{maxLength: 补充最长}}
-            helperText={<Tip>{补充.length}</Tip>}
             fullWidth
             multiline
             minRows={4}
           />
-          <Box display="flex" justifyContent="center" position="relative" m={1}>
+          <Box display="flex" justifyContent="center" position="relative">
             {加载 && <CircularProgress size={48} sx={{position: 'absolute', top: '50%', left: '50%', mt: '-24px', ml: '-24px'}}/>}
             <TextField
               id="送出"
