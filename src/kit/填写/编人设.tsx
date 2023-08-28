@@ -15,7 +15,7 @@ function Tip({
   error?: boolean
   children?: React.ReactNode
 }) {
-  return <Box mt={-0.5} fontSize="smaller" {...error && {color: 'error.main'}}>{children}</Box>
+  return <Box component="span" display="block" mt={-0.5} fontSize="smaller" {...error && {color: 'error.main'}}>{children}</Box>
 }
 
 export default function 编人设({
