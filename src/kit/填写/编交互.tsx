@@ -33,7 +33,7 @@ export default function 编交互({
     }).catch(set错误)
   }
   const bar = (
-    <容器 component="nav">
+    <容器 component="footer">
       <OutlinedInput
         id="动静"
         value={动静}
