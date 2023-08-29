@@ -116,7 +116,7 @@ export default function Header({
   separator: string
 }) {
   useEffect(() => {
-    document.title = prefix + separator + manifest.name
+    document.title = prefix + separator + manifest.short_name
   }, [prefix, separator])
   const [is, handleOpen, handleClose] = useOpenOrClose()
   return (
