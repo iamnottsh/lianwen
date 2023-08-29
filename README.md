@@ -1,34 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 架构
 
-## Getting Started
+本项目采用基于[React](https://react.dev/)的全栈无服务器应用程序开发框架[Next.js](https://nextjs.org/)，并采用非关系型数据库[MongoDB](https://www.mongodb.com/)，你可以去[MongoDB Cloud](https://cloud.mongodb.com/)白嫖。
 
-First, run the development server:
+## 开发
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+在项目根目录新建一个`.env.development.local`文件，输入以下内容作为环境变量：
+
+```dotenv
+MONGODB_URL=<你取得的mongodb数据库的地址>
+MONGODB_DATABASE=lianwen
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+安装依赖：
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm i
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+启动服务：
 
-## Learn More
+```bash
+yarn dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+用浏览器打开 http://localhost:3000 就能看到结果。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 部署
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+点此按钮一键部署在[Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)上：
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fiamnottsh%2Flianwen&env=MONGODB_URL,MONGODB_DATABASE&project-name=lianwen&repository-name=lianwen)
