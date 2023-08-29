@@ -35,7 +35,10 @@ export default function RootLayout({
   }, zhCN), [prefersDarkMode])
   return (
     <html lang="zh-cmn-Hans">
-      <body><ThemeProvider theme={theme}><CssBaseline/>{children}</ThemeProvider></body>
+      <body>
+        <link rel="manifest" href="/manifest.json" crossOrigin="use-credentials"/>
+        <ThemeProvider theme={theme}><CssBaseline/>{children}</ThemeProvider>
+      </body>
     </html>
   )
 }

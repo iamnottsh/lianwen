@@ -1,4 +1,4 @@
-import {github, title} from '@/config'
+import manifest from '@/../public/manifest.json'
 import useOpenOrClose from '@/kit/useOpenOrClose'
 import 全屏对话框 from '@/kit/全屏对话框'
 import 报错 from '@/kit/报错'
@@ -116,7 +116,7 @@ export default function Header({
   separator: string
 }) {
   useEffect(() => {
-    document.title = prefix + separator + title
+    document.title = prefix + separator + manifest.name
   }, [prefix, separator])
   const [is, handleOpen, handleClose] = useOpenOrClose()
   return (
@@ -125,7 +125,7 @@ export default function Header({
         <Toolbar>
           <Typography variant="h6" component="div" flexGrow={1}>{prefix}</Typography>
           <Stack direction="row" spacing={1}>
-            <Micro onClick={() => open(github, '_blank')} Icon={GitHub}/>
+            <Micro onClick={() => open('https://github.com/iamnottsh/lianwen', '_blank')} Icon={GitHub}/>
             <Micro onClick={handleOpen} Icon={SyncAlt}/>
           </Stack>
         </Toolbar>
