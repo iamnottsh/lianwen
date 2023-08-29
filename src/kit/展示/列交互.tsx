@@ -57,7 +57,7 @@ export default function 列交互({
   }, [newest])
   return (
     <列人设 is={is} end={end} before={before} newest={newest}>
-      <List>{data.slice().reverse().map(({记录, _id}) => <Item key={_id2str(_id)} _id={_id} 定义={定义} 加解={加解} 记录={记录}/>)}</List>
+      <List>{data.toReversed().map(({记录, _id}) => <Item key={_id2str(_id)} _id={_id} 定义={定义} 加解={加解} 记录={记录}/>)}</List>
     </列人设>
   )
 }
