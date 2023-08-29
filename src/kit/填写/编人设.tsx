@@ -98,7 +98,7 @@ export default function 编人设({
             minRows={4}
           />
           <Box display="flex" justifyContent="center" position="relative">
-            {加载 && <CircularProgress size={48} sx={{position: 'absolute', top: '50%', left: '50%', mt: '-24px', ml: '-24px'}}/>}
+            {加载 && <CircularProgress size={30} sx={{position: 'absolute', top: '50%', left: '50%', mt: '-15px', ml: '-15px'}}/>}
             <TextField
               id="送出"
               value="送出"
