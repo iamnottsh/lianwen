@@ -20,7 +20,7 @@ pnpm i
 启动服务：
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
 用浏览器打开 http://localhost:3000 就能看到结果。
