@@ -1,5 +1,5 @@
 import {Send} from '@mui/icons-material'
-import {AppBar, Box, Button, CircularProgress, IconButton, InputAdornment, OutlinedInput} from '@mui/material'
+import {AppBar, Box, Button, CircularProgress, IconButton, InputAdornment, TextField} from '@mui/material'
 import {ObjectId} from 'bson'
 import {useRef, useState} from 'react'
 import 做交互 from '../制作/做交互'
@@ -34,15 +34,18 @@ export default function 编交互({
   }
   const bar = (
     <容器 component="footer">
-      <OutlinedInput
+      <TextField
         id="动静"
+        label="动静"
         value={动静}
         onChange={event => set动静(event.target.value)}
         onKeyDown={event => event.key === 'Enter' && handleClick()}
-        endAdornment={<InputAdornment position="end" sx={{position: 'relative'}}>
-          {加载 && <CircularProgress size={40} sx={{position: 'absolute', top: -20, left: 0}}/>}
-          <IconButton color="secondary" edge="end" onClick={handleClick} disabled={加载}><Send/></IconButton>
-        </InputAdornment>}
+        InputProps={{
+          endAdornment: <InputAdornment position="end" sx={{position: 'relative'}}>
+            {加载 && <CircularProgress size={40} sx={{position: 'absolute', top: -20, left: 0}}/>}
+            <IconButton color="secondary" edge="end" onClick={handleClick} disabled={加载}><Send/></IconButton>
+          </InputAdornment>,
+        }}
         inputRef={inputRef}
         fullWidth
         autoFocus
@@ -51,6 +54,7 @@ export default function 编交互({
       <Box display="flex" flexDirection="row">
         {['，', '。', '？', '！', '、', '…', '~', '❤️', '（', '）', '/*', '*/'].map(s => <Button
           key={s}
+          color="inherit"
           sx={{minWidth: 0, width: '100%'}}
           onClick={() => {
             const {current} = inputRef

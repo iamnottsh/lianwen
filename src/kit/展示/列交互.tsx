@@ -23,18 +23,18 @@ export default function 列交互({
   加解: CryptoKey
 }) {
   const [data, setData] = useState<交互头[]>([])
-  const [is, open, close] = useOpenOrClose(true)
+  const [is, handleOpen, handleClose] = useOpenOrClose(true)
   const [end, setEnd] = useState(false)
   const load = useCallback((promise: Promise<void>) => {
-    open()
-    promise.finally(close)
-  }, [open, close])
+    handleOpen()
+    promise.finally(handleClose)
+  }, [handleOpen, handleClose])
   const reload = useCallback(() => {
     load(执行GET请求<交互头[]>('chat', new URLSearchParams({id})).then(value => {
       setData(value)
       setEnd(value.length < 单次返回)
-    }).finally(close))
-  }, [id, load, close])
+    }).finally(handleClose))
+  }, [id, load, handleClose])
   useEffect(() => reload(), [reload])
   const before = useCallback(() => {
     if (data.length) load(执行GET请求<交互头[]>('chat', new URLSearchParams({id, before: _id2str(data[data.length - 1]._id)})).then(value => {

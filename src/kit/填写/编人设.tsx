@@ -27,17 +27,18 @@ export default function 编人设({
   送出: (角色: 角色体) => Promise<ObjectId>
   url: string
 }) {
-  const [is, open, close] = useOpenOrClose()
+  const [is, handleOpen, handleClose] = useOpenOrClose()
   const [情节, set情节] = useState(''), 情节error = 情节.length < 情节最短
   const [真名, set真名] = useState(''), 真名error = 真名.length < 真名最短
   const [萌差, set萌差] = useState(''), 萌差error = !萌差选项.includes(萌差)
   const [补充, set补充] = useState('')
   const [错误, set错误] = useState<Error | null>()
   const 加载 = 错误 === null
+  const 关闭 = () => set错误(undefined)
   return (
     <>
-      <Fab color="secondary" sx={{position: 'fixed', bottom: 10, right: 10}} onClick={open}><Add/></Fab>
-      <全屏对话框 open={is} handleClose={close} title={title}>
+      <Fab color="secondary" sx={{position: 'fixed', bottom: 10, right: 10}} onClick={handleOpen}><Add/></Fab>
+      <全屏对话框 is={is} handleClose={handleClose} title={title}>
         <Stack
           spacing={0.5}
           component="form"
@@ -45,9 +46,17 @@ export default function 编人设({
           onSubmit={event => {
             event.preventDefault()
             set错误(null)
-            送出({情节, 真名, 萌差, 补充}).then(_id => {
-              location.href = `/${url}/${_id2str(_id)}`
-            }).catch(set错误)
+            送出({情节, 真名, 萌差, 补充})
+              .then(_id => {
+                location.href = `/${url}/${_id2str(_id)}`
+              })
+              .catch(e => {
+                if (e instanceof Error) set错误(e)
+                else {
+                  关闭()
+                  throw e
+                }
+              })
           }}
         >
           <TextField
@@ -97,19 +106,21 @@ export default function 编人设({
             multiline
             minRows={4}
           />
-          <Box display="flex" justifyContent="center" position="relative">
-            {加载 && <CircularProgress size={30} sx={{position: 'absolute', top: '50%', left: '50%', mt: '-15px', ml: '-15px'}}/>}
-            <TextField
-              id="送出"
-              value="送出"
-              color="primary"
-              component={Button}
-              InputProps={{size: 'small'}}
-              inputProps={{type: 'submit'}}
-              disabled={情节error || 真名error || 萌差error || 错误 === null}
-            />
-          </Box>
-          {错误 && <报错 错误={错误} 关闭={() => set错误(undefined)}/>}
+          <Stack direction="row" spacing={1} justifyContent="center">
+            <Box position="relative">
+              {加载 && <CircularProgress size={30} sx={{position: 'absolute', top: '50%', left: '50%', mt: '-15px', ml: '-15px'}}/>}
+              <TextField
+                id="送出"
+                value="送出"
+                color="primary"
+                component={Button}
+                InputProps={{size: 'small'}}
+                inputProps={{type: 'submit'}}
+                disabled={情节error || 真名error || 萌差error || 错误 === null}
+              />
+            </Box>
+          </Stack>
+          {错误 && <报错 错误={错误} 关闭={关闭}/>}
         </Stack>
       </全屏对话框>
     </>

@@ -12,12 +12,12 @@ const TransitionComponent = forwardRef(function Transition(
 })
 
 export default function 全屏对话框({
-  open,
+  is,
   handleClose,
   title,
   children,
 }: {
-  open: boolean
+  is: boolean
   handleClose: () => void
   title: string
   children?: React.ReactNode
@@ -25,7 +25,7 @@ export default function 全屏对话框({
   return (
     <Dialog
       fullScreen
-      open={open}
+      open={is}
       onClose={handleClose}
       TransitionComponent={TransitionComponent}
     >
