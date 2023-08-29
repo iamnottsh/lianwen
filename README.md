@@ -1,6 +1,6 @@
 ## 架构
 
-本项目采用基于[React](https://react.dev/)的全栈无服务器应用程序开发框架[Next.js](https://nextjs.org/)，并采用非关系型数据库[MongoDB](https://www.mongodb.com/)，你可以去[MongoDB Cloud](https://cloud.mongodb.com/)白嫖。
+本项目采用基于[React](https://react.dev/)的全栈无服务器应用程序开发框架[Next.js](https://nextjs.org/)，并且采用非关系型数据库[MongoDB](https://www.mongodb.com/)，你可以去[MongoDB Cloud](https://cloud.mongodb.com/)白嫖。
 
 ## 开发
 
