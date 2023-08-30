@@ -27,7 +27,7 @@ export default function 列角色({
   return (
     <列人设 is={is} end={end} before={before} newest={newest}>
       {children}
-      {data.toReversed().map(({角色, _id}) => {
+      {data.slice().reverse().map(({角色, _id}) => {
         const id = _id2str(_id)
         return <显角色 key={id} _id={_id} choice={choice} 角色={角色} url={`${url}/${id}`}/>
       })}
