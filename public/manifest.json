@@ -1,11 +1,11 @@
 {
-  "name": "联文岛匿名论坛",
+  "name": "联文岛 匿名论坛",
   "short_name": "联文岛",
   "description": "联文岛渐进式Web应用",
   "lang": "zh-CN",
   "start_url": ".",
   "id": "/",
-  "display": "fullscreen",
+  "display": "standalone",
   "theme_color": "#9c27b0",
   "background_color": "#f6f6f6",
   "icons": [
