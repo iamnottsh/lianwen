@@ -107,6 +107,13 @@ export function Storage() {
   )
 }
 
+let e: any
+if (typeof window !== 'undefined') {
+  window.addEventListener('beforeinstallprompt', installPrompt => {
+    e = installPrompt
+  })
+}
+
 
 export default function Header({
   prefix,
@@ -127,8 +134,8 @@ export default function Header({
     addEventListener('beforeinstallprompt', handler)
     return () => removeEventListener('beforeinstallprompt', handler)
   }, [handler])
-  const callback = useCallback(({outcome}: {outcome: 'accept' | 'dismiss'}) => {
-    if (outcome === 'accept') setEvent(undefined)
+  const callback = useCallback(({outcome}: {outcome: 'accepted' | 'dismissed'}) => {
+    if (outcome === 'accepted') setEvent(undefined)
   }, [])
   return (
     <>
