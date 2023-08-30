@@ -134,7 +134,7 @@ export default function Header({
     addEventListener('beforeinstallprompt', handler)
     return () => removeEventListener('beforeinstallprompt', handler)
   }, [handler])
-  const callback = useCallback(({outcome}: {outcome: 'accepted' | 'dismissed'}) => {
+  const callback = useCallback(({outcome}: any) => {
     if (outcome === 'accepted') setEvent(undefined)
   }, [])
   return (
