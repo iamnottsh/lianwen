@@ -2,9 +2,9 @@ import manifest from '@/../public/manifest.json'
 import useOpenOrClose from '@/kit/useOpenOrClose'
 import 全屏对话框 from '@/kit/全屏对话框'
 import 报错 from '@/kit/报错'
-import {GitHub, SvgIconComponent, SyncAlt} from '@mui/icons-material'
+import {GetApp, GitHub, SvgIconComponent, SyncAlt} from '@mui/icons-material'
 import {AppBar, Box, Button, CircularProgress, Stack, TextField, Toolbar, Typography} from '@mui/material'
-import {useEffect, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 
 function Micro({
   onClick,
@@ -119,12 +119,24 @@ export default function Header({
     document.title = prefix + separator + manifest.short_name
   }, [prefix, separator])
   const [is, handleOpen, handleClose] = useOpenOrClose()
+  const [event, setEvent] = useState<any>()
+  const handler = useCallback((event: any) => {
+    setEvent(event)
+  }, [])
+  useEffect(() => {
+    addEventListener('beforeinstallprompt', handler)
+    return () => removeEventListener('beforeinstallprompt', handler)
+  }, [handler])
+  const callback = useCallback(({outcome}: {outcome: 'accept' | 'dismiss'}) => {
+    if (outcome === 'accept') setEvent(undefined)
+  }, [])
   return (
     <>
       <AppBar>
         <Toolbar>
           <Typography variant="h6" component="div" flexGrow={1}>{prefix}</Typography>
           <Stack direction="row" spacing={1}>
+            {event && <Micro onClick={() => event.prompt().then(callback)} Icon={GetApp}/>}
             <Micro onClick={() => open('https://github.com/iamnottsh/lianwen', '_blank')} Icon={GitHub}/>
             <Micro onClick={handleOpen} Icon={SyncAlt}/>
           </Stack>

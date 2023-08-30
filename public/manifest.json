@@ -45,6 +45,11 @@
       "type": "image/png"
     },
     {
+      "src": "/icon512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
       "src": "/icon768.png",
       "sizes": "768x768",
       "type": "image/png"
