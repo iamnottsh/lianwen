@@ -2,7 +2,7 @@ import manifest from '@/../public/manifest.json'
 import useOpenOrClose from '@/kit/useOpenOrClose'
 import 全屏对话框 from '@/kit/全屏对话框'
 import 报错 from '@/kit/报错'
-import {GetApp, GitHub, SvgIconComponent, SyncAlt} from '@mui/icons-material'
+import {Android, GitHub, InstallDesktop, SvgIconComponent, SyncAlt} from '@mui/icons-material'
 import {AppBar, Box, Button, CircularProgress, Stack, TextField, Toolbar, Typography} from '@mui/material'
 import {useCallback, useEffect, useState} from 'react'
 
@@ -143,7 +143,8 @@ export default function Header({
         <Toolbar>
           <Typography variant="h6" component="div" flexGrow={1}>{prefix}</Typography>
           <Stack direction="row" spacing={1}>
-            {event && <Micro onClick={() => event.prompt().then(callback)} Icon={GetApp}/>}
+            {event && <Micro onClick={() => event.prompt().then(callback)} Icon={InstallDesktop}/>}
+            <Micro onClick={() => open('https://github.com/iamnottsh/lianwen/releases', '_blank')} Icon={Android}/>
             <Micro onClick={() => open('https://github.com/iamnottsh/lianwen', '_blank')} Icon={GitHub}/>
             <Micro onClick={handleOpen} Icon={SyncAlt}/>
           </Stack>
