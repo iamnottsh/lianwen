@@ -19,6 +19,7 @@
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@types/stack-trace": "^0.0.30",
+    "@vercel/analytics": "^1.0.2",
     "base65536": "^4.0.3",
     "bson": "^4.7.2",
     "error-stack-parser": "^2.1.4",

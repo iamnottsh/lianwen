@@ -7,6 +7,7 @@ import '@fontsource/roboto/700.css'
 import {createTheme, CssBaseline, darken, lighten, ThemeProvider, useMediaQuery} from '@mui/material'
 import {grey, pink, purple} from '@mui/material/colors'
 import {zhCN} from '@mui/material/locale'
+import {Analytics} from '@vercel/analytics/react'
 import {useMemo} from 'react'
 
 export default function RootLayout({
@@ -38,6 +39,7 @@ export default function RootLayout({
       <body>
         <link rel="manifest" href="/manifest.json" crossOrigin="use-credentials"/>
         <ThemeProvider theme={theme}><CssBaseline/>{children}</ThemeProvider>
+        <Analytics/>
       </body>
     </html>
   )
